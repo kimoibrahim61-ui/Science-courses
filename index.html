@@ -1,0 +1,2044 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Science Courses</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --pr:#2563eb;--pr2:#1d4ed8;--pr-l:#eff6ff;--pr-ll:#f8faff;
+  --ac:#059669;--ac-l:#ecfdf5;
+  --or:#d97706;--or-l:#fffbeb;
+  --re:#dc2626;--re-l:#fef2f2;
+  --pu:#7c3aed;--pu-l:#f5f3ff;
+  --cy:#0891b2;--cy-l:#ecfeff;
+  --bg:#f8fafc;--card:#fff;--bd:#e2e8f0;--bd2:#cbd5e1;
+  --tx:#0f172a;--tx2:#475569;--tx3:#94a3b8;
+  --sw:248px;
+  --grad:linear-gradient(135deg,#1e3a8a 0%,#2563eb 60%,#0ea5e9 100%);
+  --sh:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.05);
+  --sh2:0 4px 12px rgba(0,0,0,.08);
+  --sh3:0 10px 30px rgba(0,0,0,.1);
+  --r:10px;--r2:14px;
+}
+html,body{height:100%;font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--tx);font-size:14px;line-height:1.5}
+::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:5px}
+
+/* AUTH */
+#pg-auth{display:flex;min-height:100vh;align-items:center;justify-content:center;background:var(--grad);padding:1rem;position:relative;overflow:hidden}
+#pg-auth::before{content:'⚗️';position:absolute;font-size:280px;opacity:.04;top:-60px;left:-70px;line-height:1}
+.auth-card{background:#fff;border-radius:20px;padding:2.25rem;width:100%;max-width:420px;box-shadow:0 32px 80px rgba(0,0,0,.28);position:relative;z-index:1;animation:slideUp .45s cubic-bezier(.16,1,.3,1)}
+@keyframes slideUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.auth-logo{text-align:center;margin-bottom:1.75rem}
+.auth-logo-wrap{display:inline-flex;align-items:center;gap:.65rem;margin-bottom:.6rem}
+.auth-logo-ic{width:48px;height:48px;background:var(--grad);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 6px 20px rgba(37,99,235,.35);overflow:hidden}
+.auth-logo-ic img{width:100%;height:100%;object-fit:cover}
+.auth-logo-name{font-size:20px;font-weight:900;color:var(--pr)}
+.auth-logo-sub{font-size:11px;color:var(--tx3)}
+.auth-badge{display:inline-block;background:var(--pr-l);color:var(--pr);font-size:11.5px;font-weight:600;padding:.35rem .9rem;border-radius:20px}
+.tabs{display:flex;background:#f1f5f9;border-radius:10px;padding:3px;margin-bottom:1.5rem;gap:3px}
+.tab{flex:1;padding:.5rem;text-align:center;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;color:var(--tx2);border:none;background:none;font-family:'Plus Jakarta Sans',sans-serif;transition:.2s}
+.tab.on{background:#fff;color:var(--pr);box-shadow:var(--sh)}
+.fg{margin-bottom:.9rem}
+.fg label{display:block;font-size:11px;font-weight:700;color:var(--tx2);margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.06em}
+.fi{width:100%;padding:.65rem .9rem;border:1.5px solid var(--bd2);border-radius:var(--r);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;color:var(--tx);background:#fafbfc;transition:.2s}
+.fi:focus{outline:none;border-color:var(--pr);background:#fff;box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+.fi-ta{resize:vertical;min-height:80px}
+.rg2{display:grid;grid-template-columns:1fr 1fr;gap:.4rem}
+.rb{padding:.55rem;border:1.5px solid var(--bd2);border-radius:var(--r);text-align:center;cursor:pointer;font-size:12px;font-weight:600;color:var(--tx2);font-family:'Plus Jakarta Sans',sans-serif;background:#fff;transition:.2s}
+.rb.on{border-color:var(--pr);background:var(--pr-l);color:var(--pr)}
+.bauth{width:100%;padding:.75rem;border:none;border-radius:var(--r);font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;background:var(--grad);color:#fff;transition:.2s}
+.bauth:hover{opacity:.92;transform:translateY(-1px)}
+.adiv{display:flex;align-items:center;gap:.5rem;margin:.85rem 0;color:var(--tx3);font-size:11.5px}
+.adiv::before,.adiv::after{content:'';flex:1;height:1px;background:var(--bd)}
+.qbtns{display:grid;grid-template-columns:1fr 1fr;gap:.4rem;margin-bottom:.6rem}
+.qbtn{padding:.5rem;border:1.5px solid var(--bd2);border-radius:var(--r);font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:var(--tx2);transition:.2s}
+.qbtn:hover{border-color:var(--pr);color:var(--pr);background:var(--pr-l)}
+.afoot{text-align:center;font-size:12px;color:var(--tx2);margin-top:.65rem}
+.afoot span{color:var(--pr);cursor:pointer;font-weight:700}
+
+/* MAIN */
+#pg-main{display:none;min-height:100vh}
+.layout{display:flex;min-height:100vh}
+.sidebar{width:var(--sw);background:#fff;border-right:1px solid var(--bd);position:fixed;top:0;left:0;bottom:0;z-index:200;display:flex;flex-direction:column;transition:.3s}
+.slogo{padding:.85rem 1rem;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:.65rem;flex-shrink:0;background:var(--pr-ll)}
+.slogo-ic{width:34px;height:34px;background:var(--grad);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;overflow:hidden}
+.slogo-ic img{width:100%;height:100%;object-fit:cover}
+.slogo-name{font-size:13px;font-weight:900;color:var(--pr)}
+.slogo-sub{font-size:9.5px;color:var(--tx3)}
+.snav{flex:1;padding:.5rem;overflow-y:auto}
+.nlbl{font-size:9px;font-weight:800;color:var(--tx3);text-transform:uppercase;letter-spacing:.12em;padding:.4rem .75rem;margin-top:.4rem}
+.ni{display:flex;align-items:center;gap:.6rem;padding:.56rem .78rem;border-radius:8px;cursor:pointer;color:var(--tx2);font-size:13px;font-weight:500;transition:.15s;margin-bottom:2px;user-select:none}
+.ni:hover{background:#f1f5f9;color:var(--tx)}
+.ni.on{background:var(--pr-l);color:var(--pr);font-weight:700}
+.ni-ic{width:18px;text-align:center;font-size:15px;flex-shrink:0}
+.nbadge{margin-left:auto;background:var(--re);color:#fff;font-size:9.5px;font-weight:700;padding:1px 6px;border-radius:999px;min-width:18px;text-align:center}
+.suser{padding:.75rem 1rem;border-top:1px solid var(--bd);flex-shrink:0}
+.suc{display:flex;align-items:center;gap:.6rem}
+.sav{width:32px;height:32px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;flex-shrink:0}
+.suf{flex:1;min-width:0}
+.sun{font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sur{font-size:10px;color:var(--tx3)}
+.lout{width:26px;height:26px;border:none;background:none;cursor:pointer;border-radius:6px;color:var(--tx3);font-size:14px;display:flex;align-items:center;justify-content:center;transition:.15s}
+.lout:hover{background:var(--re-l);color:var(--re)}
+
+/* CONTENT */
+.content{margin-left:var(--sw);flex:1;min-height:100vh}
+.topbar{background:#fff;border-bottom:1px solid var(--bd);padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.tbt{font-size:15px;font-weight:800;letter-spacing:-.3px}
+.tba{display:flex;gap:.45rem;align-items:center}
+.ib{width:33px;height:33px;border:none;background:#f1f5f9;border-radius:8px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:.15s;position:relative}
+.ib:hover{background:var(--pr-l)}
+.ndot{position:absolute;top:5px;right:5px;width:7px;height:7px;background:#ef4444;border-radius:50%;border:2px solid #fff;display:none}
+.cb{padding:1.25rem}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:.35rem;padding:.48rem .95rem;border-radius:var(--r);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;border:none;white-space:nowrap;transition:.2s}
+.btn-pr{background:var(--pr);color:#fff}.btn-pr:hover{background:var(--pr2)}
+.btn-se{background:#f1f5f9;color:var(--tx2);border:1px solid var(--bd)}.btn-se:hover{background:var(--bd)}
+.btn-gn{background:var(--ac);color:#fff}
+.btn-re{background:var(--re);color:#fff}
+.btn-or{background:var(--or);color:#fff}
+.btn-pu{background:var(--pu);color:#fff}
+.btn-cy{background:var(--cy);color:#fff}
+.btn-sm{padding:.28rem .65rem;font-size:11.5px}
+.btn-lg{padding:.68rem 1.5rem;font-size:14px}
+.btn-block{width:100%;justify-content:center}
+
+/* UPLOAD ZONE */
+.upzone{border:2px dashed var(--bd2);border-radius:var(--r);padding:1.25rem;text-align:center;cursor:pointer;transition:.2s;background:#fafbfc}
+.upzone:hover{border-color:var(--pr);background:var(--pr-l)}
+.upzone-ic{font-size:24px;margin-bottom:.4rem}
+.upzone p{font-size:12.5px;color:var(--tx2)}
+.upzone small{font-size:11px;color:var(--tx3)}
+.img-preview{width:100%;height:120px;border-radius:var(--r);object-fit:cover;display:block;margin-top:.5rem;border:1px solid var(--bd)}
+.pdf-preview{background:var(--re-l);border:1px solid #fca5a5;border-radius:8px;padding:.6rem .9rem;display:flex;align-items:center;gap:.5rem;font-size:12.5px;color:var(--re);font-weight:600;margin-top:.5rem}
+
+/* STATS */
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(138px,1fr));gap:.85rem;margin-bottom:1.2rem}
+.scard{background:var(--card);border-radius:var(--r2);padding:1rem;border:1px solid var(--bd);box-shadow:var(--sh);transition:.2s}
+.scard:hover{box-shadow:var(--sh2);transform:translateY(-1px)}
+.si{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;margin-bottom:.75rem}
+.si-bl{background:#dbeafe}.si-gr{background:#d1fae5}.si-am{background:#fef3c7}.si-pu{background:#ede9fe}.si-cy{background:#cffafe}.si-re{background:#fee2e2}
+.sv{font-size:22px;font-weight:900;color:var(--tx);letter-spacing:-1px}
+.sl{font-size:11.5px;color:var(--tx2);margin-top:1px;font-weight:500}
+
+/* GRADE TABS */
+.grade-tabs{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:1.1rem}
+.gtab{padding:.38rem .85rem;border-radius:999px;border:1.5px solid var(--bd2);background:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;cursor:pointer;color:var(--tx2);transition:.2s}
+.gtab:hover{border-color:var(--pr);color:var(--pr)}
+.gtab.on{background:var(--pr);color:#fff;border-color:var(--pr)}
+
+/* COURSE CARDS */
+.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1rem}
+.cc{background:var(--card);border-radius:var(--r2);border:1px solid var(--bd);box-shadow:var(--sh);overflow:hidden;transition:.25s;cursor:pointer}
+.cc:hover{box-shadow:var(--sh3);transform:translateY(-2px)}
+.cth{height:118px;position:relative;display:flex;align-items:center;justify-content:center;font-size:36px;overflow:hidden}
+.cth img{width:100%;height:100%;object-fit:cover}
+.cth-em{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:36px}
+.ctag-gr{position:absolute;top:8px;left:8px;background:rgba(255,255,255,.92);backdrop-filter:blur(4px);color:var(--pr);font-size:10px;padding:2px 7px;border-radius:5px;font-weight:800}
+.ctag-enrolled{position:absolute;top:8px;right:8px;background:rgba(5,150,105,.9);color:#fff;font-size:9.5px;padding:2px 7px;border-radius:5px;font-weight:700}
+.cbody{padding:.85rem}
+.cc-grade{font-size:10px;color:var(--pr);font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.2rem}
+.cc-title{font-size:13px;font-weight:700;color:var(--tx);margin-bottom:.4rem;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cc-meta{display:flex;flex-wrap:wrap;gap:.4rem;font-size:11px;color:var(--tx3);margin-bottom:.55rem}
+.pill{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:5px;font-size:10.5px;font-weight:700}
+.pill-gn{background:var(--ac-l);color:var(--ac)}
+.pill-or{background:var(--or-l);color:var(--or)}
+.pill-bl{background:var(--pr-l);color:var(--pr)}
+.pill-gy{background:#f1f5f9;color:#475569}
+.pill-re{background:var(--re-l);color:var(--re)}
+
+/* SESSION LIST */
+.sl-wrap{background:var(--card);border:1px solid var(--bd);border-radius:var(--r2);overflow:hidden;box-shadow:var(--sh)}
+.sl-hd{padding:.75rem 1rem;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;background:#f8fafc}
+.sl-hd h3{font-size:13px;font-weight:700}
+.sl-item{border-bottom:1px solid var(--bd);transition:.15s}
+.sl-item:last-child{border-bottom:none}
+.sl-item-hd{display:flex;align-items:center;gap:.6rem;padding:.65rem .9rem;cursor:pointer}
+.sl-item-hd:hover{background:#f8fafc}
+.sl-item.active-s .sl-item-hd{background:var(--pr-l);border-left:3px solid var(--pr)}
+.sl-thumb{width:52px;height:36px;border-radius:6px;overflow:hidden;flex-shrink:0;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font-size:16px}
+.sl-thumb img{width:100%;height:100%;object-fit:cover}
+.snum{width:24px;height:24px;border-radius:50%;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:var(--tx2);flex-shrink:0}
+.sl-item.active-s .snum{background:var(--pr);color:#fff}
+.sinfo{flex:1;min-width:0}
+.sname{font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sdur{font-size:10.5px;color:var(--tx3);margin-top:1px}
+.s-actions{display:flex;align-items:center;gap:.3rem;flex-shrink:0}
+.s-buy{padding:.24rem .6rem;border:none;border-radius:5px;font-family:'Plus Jakarta Sans',sans-serif;font-size:10.5px;font-weight:700;cursor:pointer;background:var(--pr);color:#fff;transition:.15s}
+.s-buy:hover{background:var(--pr2)}
+/* Videos inside session */
+.sl-videos{padding:0 .9rem .6rem 2.5rem;display:none}
+.sl-item.active-s .sl-videos{display:block}
+.sv-item{display:flex;align-items:center;gap:.6rem;padding:.45rem .65rem;border-radius:8px;cursor:pointer;transition:.15s;margin-bottom:.25rem;border:1px solid var(--bd)}
+.sv-item:hover{background:var(--pr-l)}
+.sv-item.active-v{background:var(--pr-l);border-color:var(--pr)}
+.sv-num{width:22px;height:22px;border-radius:50%;background:var(--pr-l);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--pr);flex-shrink:0}
+.sv-item.active-v .sv-num{background:var(--pr);color:#fff}
+.sv-info{flex:1;min-width:0}
+.sv-title{font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sv-dur{font-size:10.5px;color:var(--tx3)}
+
+/* VIDEO */
+.vwrap{position:relative;border-radius:var(--r2);overflow:hidden;background:#000;margin-bottom:1rem;user-select:none}
+.vwrap iframe{display:block;width:100%;aspect-ratio:16/9;border:none;pointer-events:none}
+.vshield{position:absolute;inset:0;z-index:10;background:transparent;cursor:default}
+.vshield.locked{background:rgba(15,23,42,.82);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;gap:.65rem;text-align:center;padding:1.5rem}
+.vlock-icon{font-size:36px}
+.vlock-txt{font-size:14px;font-weight:800}
+.vlock-sub{font-size:12px;opacity:.72;max-width:220px;line-height:1.5}
+.vcontrols{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.75));padding:.75rem 1rem .6rem;z-index:11;display:flex;align-items:center;gap:.6rem;opacity:0;transition:.2s}
+.vwrap:hover .vcontrols{opacity:1}
+.vcbtn{background:none;border:none;color:#fff;font-size:15px;cursor:pointer;padding:.25rem;border-radius:5px}
+.vcbtn:hover{background:rgba(255,255,255,.15)}
+.vtb{flex:1;height:4px;background:rgba(255,255,255,.3);border-radius:999px;overflow:hidden}
+.vtbf{height:100%;background:#38bdf8;width:0}
+.vctime{font-size:11px;color:rgba(255,255,255,.8);font-family:'JetBrains Mono',monospace}
+/* Video tabs inside player */
+.vtabs{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.65rem}
+.vtab{padding:.32rem .75rem;border-radius:999px;border:1.5px solid var(--bd2);background:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:11.5px;font-weight:600;cursor:pointer;color:var(--tx2);transition:.2s}
+.vtab:hover{border-color:var(--pr);color:var(--pr)}
+.vtab.on{background:var(--pr);color:#fff;border-color:var(--pr)}
+
+/* TABLE */
+.tc{background:var(--card);border-radius:var(--r2);border:1px solid var(--bd);box-shadow:var(--sh);overflow:hidden;margin-bottom:1rem}
+.tch{padding:.8rem 1.1rem;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap;background:#fafafa}
+.tch h3{font-size:13.5px;font-weight:700}
+table{width:100%;border-collapse:collapse}
+thead tr{background:#f8fafc}
+th{padding:.58rem .9rem;text-align:left;font-size:10.5px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--bd);white-space:nowrap}
+td{padding:.62rem .9rem;font-size:12.5px;color:var(--tx);border-bottom:1px solid var(--bd);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:#fafafa}
+.tdu{display:flex;align-items:center;gap:.5rem}
+.tdav{width:28px;height:28px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700;flex-shrink:0}
+
+/* BADGE */
+.bd{display:inline-flex;align-items:center;padding:2px 8px;border-radius:5px;font-size:10.5px;font-weight:700;white-space:nowrap}
+.bd-bl{background:#dbeafe;color:#1e40af}
+.bd-gr{background:#d1fae5;color:#065f46}
+.bd-re{background:#fee2e2;color:#991b1b}
+.bd-am{background:#fef3c7;color:#92400e}
+.bd-gy{background:#f1f5f9;color:#475569}
+.bd-pu{background:#ede9fe;color:#5b21b6}
+
+/* MODAL */
+.mov{position:fixed;inset:0;background:rgba(15,23,42,.6);backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;z-index:9999;padding:1rem;opacity:0;pointer-events:none;transition:.2s}
+.mov.show{opacity:1;pointer-events:all}
+.mbox{background:#fff;border-radius:18px;width:100%;max-width:560px;max-height:92vh;overflow-y:auto;box-shadow:0 28px 70px rgba(0,0,0,.22);transform:scale(.95);transition:.25s}
+.mov.show .mbox{transform:scale(1)}
+.mbox-lg{max-width:680px}
+.mhd{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.4rem;border-bottom:1px solid var(--bd);position:sticky;top:0;background:#fff;z-index:1}
+.mhd h3{font-size:15px;font-weight:800}
+.mclose{width:30px;height:30px;border:none;background:#f1f5f9;cursor:pointer;border-radius:7px;font-size:15px;color:var(--tx2);display:flex;align-items:center;justify-content:center;transition:.15s}
+.mclose:hover{background:var(--re-l);color:var(--re)}
+.mbody{padding:1.4rem}
+.mfoot{padding:.9rem 1.4rem;border-top:1px solid var(--bd);display:flex;gap:.4rem;justify-content:flex-end}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+
+/* VIDEO ENTRY in modal */
+.video-entry{background:#f8fafc;border:1px solid var(--bd);border-radius:var(--r);padding:.85rem;margin-bottom:.6rem;position:relative}
+.video-entry-num{font-size:10px;font-weight:800;color:var(--tx3);text-transform:uppercase;margin-bottom:.5rem}
+.del-video-btn{position:absolute;top:.5rem;right:.5rem;background:var(--re-l);border:none;border-radius:6px;color:var(--re);font-size:13px;cursor:pointer;width:26px;height:26px;display:flex;align-items:center;justify-content:center}
+
+/* HOMEWORK */
+.hw-card{background:var(--card);border:1px solid var(--bd);border-radius:var(--r2);padding:1rem;margin-bottom:.75rem;box-shadow:var(--sh)}
+.hw-hd{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.65rem;flex-wrap:wrap;gap:.5rem}
+.hw-title{font-size:13.5px;font-weight:700}
+.hw-meta{font-size:11.5px;color:var(--tx2);margin-top:2px}
+.grade-input{width:60px;padding:.35rem .5rem;border:1.5px solid var(--bd2);border-radius:7px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;text-align:center;color:var(--pr)}
+.grade-input:focus{outline:none;border-color:var(--pr)}
+
+/* EXAM */
+.exam-q{background:var(--card);border:1px solid var(--bd);border-radius:var(--r2);padding:1.1rem;margin-bottom:.85rem;box-shadow:var(--sh)}
+.exam-q-num{font-size:10.5px;font-weight:800;color:var(--tx3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.35rem}
+.exam-q-text{font-size:13.5px;font-weight:700;margin-bottom:.75rem;line-height:1.5}
+.mcq-opt{display:flex;align-items:center;gap:.65rem;padding:.55rem .75rem;border:1.5px solid var(--bd2);border-radius:8px;margin-bottom:.4rem;cursor:pointer;transition:.15s;font-size:13px}
+.mcq-opt:hover{border-color:var(--pr);background:var(--pr-l)}
+.mcq-opt.selected{border-color:var(--pr);background:var(--pr-l)}
+.mcq-opt.correct{border-color:var(--ac);background:var(--ac-l)}
+.mcq-opt.wrong{border-color:var(--re);background:var(--re-l)}
+.mcq-circle{width:18px;height:18px;border-radius:50%;border:2px solid var(--bd2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;transition:.2s}
+.mcq-opt.selected .mcq-circle{border-color:var(--pr);background:var(--pr);color:#fff}
+.mcq-opt.correct .mcq-circle{border-color:var(--ac);background:var(--ac);color:#fff}
+.mcq-opt.wrong .mcq-circle{border-color:var(--re);background:var(--re);color:#fff}
+.essay-ta{width:100%;padding:.65rem .9rem;border:1.5px solid var(--bd2);border-radius:8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;color:var(--tx);resize:vertical;min-height:100px;background:#fafbfc}
+.essay-ta:focus{outline:none;border-color:var(--pr)}
+.essay-ta[readonly]{background:#f8fafc;cursor:default}
+.exam-score{background:var(--grad);border-radius:var(--r2);padding:2rem;text-align:center;color:#fff;margin-bottom:1.25rem}
+.exam-score-num{font-size:52px;font-weight:900;letter-spacing:-2px;line-height:1}
+.exam-score-lbl{font-size:13px;opacity:.85;margin-top:.25rem}
+.score-bar{height:10px;background:rgba(255,255,255,.25);border-radius:999px;overflow:hidden;margin:.85rem auto;max-width:220px}
+.score-fill{height:100%;background:#fff;border-radius:999px;transition:1s cubic-bezier(.16,1,.3,1)}
+
+/* LANDING */
+.landing-hero{background:var(--grad);border-radius:var(--r2);padding:2.5rem 2rem;color:#fff;margin-bottom:1.5rem;position:relative;overflow:hidden}
+.landing-hero::before{content:'⚗️';position:absolute;font-size:160px;opacity:.06;right:-10px;top:-20px;line-height:1}
+.landing-hero h1{font-size:26px;font-weight:900;letter-spacing:-.6px;margin-bottom:.5rem;position:relative;z-index:1}
+.landing-hero p{font-size:13.5px;opacity:.88;max-width:480px;line-height:1.7;position:relative;z-index:1}
+.landing-hero-btns{display:flex;gap:.65rem;flex-wrap:wrap;margin-top:1.25rem;position:relative;z-index:1}
+.hero-btn-w{padding:.65rem 1.5rem;border:none;border-radius:var(--r);font-family:'Plus Jakarta Sans',sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;background:#fff;color:var(--pr);transition:.2s}
+.hero-btn-o{padding:.65rem 1.5rem;border:1.5px solid rgba(255,255,255,.6);border-radius:var(--r);font-family:'Plus Jakarta Sans',sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;background:transparent;color:#fff;transition:.2s}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:1.5rem}
+.feat-card{background:var(--card);border:1px solid var(--bd);border-radius:var(--r2);padding:1.1rem;box-shadow:var(--sh);text-align:center}
+.feat-ic{font-size:28px;margin-bottom:.6rem}
+.feat-title{font-size:12.5px;font-weight:700;margin-bottom:.25rem}
+.feat-desc{font-size:11.5px;color:var(--tx2);line-height:1.5}
+.latest-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:.85rem}
+.ls-card{background:var(--card);border:1px solid var(--bd);border-radius:var(--r2);padding:.85rem;box-shadow:var(--sh);cursor:pointer;transition:.2s;display:flex;align-items:center;gap:.75rem}
+.ls-card:hover{box-shadow:var(--sh2);transform:translateY(-1px)}
+.ls-thumb{width:44px;height:44px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;overflow:hidden}
+.ls-thumb img{width:100%;height:100%;object-fit:cover}
+.ls-info{flex:1;min-width:0}
+.ls-title{font-size:12.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ls-meta{font-size:11px;color:var(--tx3);margin-top:2px}
+
+/* VF */
+.vf-box{background:var(--ac-l);border:1.5px solid #6ee7b7;border-radius:var(--r);padding:1rem;margin-bottom:1rem}
+.vf-box h4{font-size:13px;font-weight:700;color:var(--ac);margin-bottom:.5rem}
+.vf-steps{font-size:12.5px;color:#065f46;line-height:2.1}
+.vf-num{font-size:20px;font-weight:900;color:var(--pr);letter-spacing:2px;margin:.2rem 0;background:#fff;padding:.38rem .9rem;border-radius:7px;border:1.5px solid #bfdbfe;display:inline-block;font-family:'JetBrains Mono',monospace}
+
+/* WELCOME */
+.wb{background:var(--grad);border-radius:var(--r2);padding:1.4rem 1.5rem;color:#fff;margin-bottom:1.2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;position:relative;overflow:hidden}
+.wb::before{content:'';position:absolute;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.06);right:-50px;top:-70px}
+.wb-tx{position:relative;z-index:1}
+.wb-tx h2{font-size:18px;font-weight:900;margin-bottom:.2rem}
+.wb-tx p{font-size:12.5px;opacity:.85}
+.wb-art{font-size:46px;position:relative;z-index:1;line-height:1}
+
+/* DETAIL */
+.dl{display:grid;grid-template-columns:1fr 285px;gap:1.1rem;align-items:start}
+.dic{background:var(--card);border-radius:var(--r2);border:1px solid var(--bd);padding:1.1rem;box-shadow:var(--sh)}
+.dic h2{font-size:17px;font-weight:800;margin-bottom:.6rem}
+.dic p{font-size:12.5px;color:var(--tx2);line-height:1.75;margin-bottom:.85rem}
+.tags{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:.85rem}
+.tag{padding:3px 10px;background:#f1f5f9;border-radius:999px;font-size:11px;color:var(--tx2)}
+
+/* SETTINGS */
+.settings-sec{background:var(--card);border:1px solid var(--bd);border-radius:var(--r2);padding:1.25rem;margin-bottom:1rem;box-shadow:var(--sh)}
+.settings-sec h3{font-size:14px;font-weight:700;margin-bottom:1rem;padding-bottom:.65rem;border-bottom:1px solid var(--bd)}
+.logo-prev{width:80px;height:80px;border-radius:14px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:32px;cursor:pointer;border:2px dashed var(--bd2);overflow:hidden;transition:.2s}
+.logo-prev:hover{border-color:var(--pr)}
+.logo-prev img{width:100%;height:100%;object-fit:cover}
+.cs{width:32px;height:32px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:.2s}
+.cs.on{border-color:#0f172a;transform:scale(1.15)}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:.6rem 0;border-bottom:1px solid var(--bd)}
+.toggle-row:last-child{border-bottom:none}
+.tgl{width:40px;height:22px;border-radius:999px;background:#e2e8f0;cursor:pointer;position:relative;transition:.2s;flex-shrink:0;border:none}
+.tgl.on{background:var(--pr)}
+.tgl::after{content:'';position:absolute;width:16px;height:16px;border-radius:50%;background:#fff;top:3px;left:3px;transition:.2s;box-shadow:var(--sh)}
+.tgl.on::after{left:21px}
+
+/* TOAST */
+#toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:#0f172a;color:#fff;padding:.7rem 1.4rem;border-radius:10px;font-size:13px;font-weight:600;z-index:99999;opacity:0;transition:.3s;pointer-events:none;white-space:nowrap;box-shadow:var(--sh3);max-width:90vw;text-align:center}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(-4px)}
+
+/* MOBILE */
+.mob-hd{display:none;background:#fff;border-bottom:1px solid var(--bd);padding:.75rem 1rem;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:300}
+.ham{background:none;border:none;font-size:20px;cursor:pointer;color:var(--tx)}
+.ovl{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:199}
+.bk{display:inline-flex;align-items:center;gap:.35rem;color:var(--pr);font-size:12.5px;font-weight:700;cursor:pointer;margin-bottom:1.1rem;padding:.33rem .72rem;background:var(--pr-l);border-radius:7px}
+.es{text-align:center;padding:3rem 1rem;color:var(--tx2)}
+.es-ic{font-size:42px;margin-bottom:.75rem}
+.es h3{font-size:14.5px;font-weight:700;color:var(--tx);margin-bottom:.35rem}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:.9rem}
+.sh h3{font-size:14.5px;font-weight:800}
+.sa{font-size:12px;color:var(--pr);cursor:pointer;font-weight:700;padding:.25rem .55rem;border-radius:6px}
+.sa:hover{background:var(--pr-l)}
+.ph{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.1rem;gap:.75rem;flex-wrap:wrap}
+.ph-t{font-size:18px;font-weight:900;letter-spacing:-.4px}
+.ph-s{font-size:12px;color:var(--tx2);margin-top:2px}
+.fsel{padding:.52rem .85rem;border:1.5px solid var(--bd2);border-radius:var(--r);font-family:'Plus Jakarta Sans',sans-serif;font-size:12.5px;color:var(--tx2);background:#fff}
+.enroll-ok{background:var(--ac-l);border-radius:8px;padding:.65rem .9rem;font-size:12px;color:var(--ac);font-weight:600;display:flex;align-items:center;gap:.4rem;margin-bottom:.75rem}
+.pay-notice{background:var(--or-l);border:1.5px solid #fcd34d;border-radius:8px;padding:.65rem .9rem;font-size:12px;color:var(--or);font-weight:600;display:flex;align-items:center;gap:.4rem;margin-bottom:.75rem}
+
+@media(max-width:900px){.dl{grid-template-columns:1fr}.two{grid-template-columns:1fr}.two-col{grid-template-columns:1fr}}
+@media(max-width:680px){
+  .sidebar{left:-100%;border-right:none;box-shadow:var(--sh3)}
+  .sidebar.open{left:0}
+  .ovl.show{display:block}
+  .mob-hd{display:flex}
+  .content{margin-left:0}
+  .topbar{display:none}
+  .sg{grid-template-columns:1fr 1fr}
+  .cg,.latest-grid{grid-template-columns:1fr}
+  .cb{padding:.9rem}
+  .feat-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<div id="pg-auth">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <div class="auth-logo-wrap">
+        <div class="auth-logo-ic" id="auth-logo-ic">⚗️</div>
+        <div>
+          <div class="auth-logo-name" id="auth-logo-name">Science Courses</div>
+          <div class="auth-logo-sub" id="auth-logo-sub">Online Learning</div>
+        </div>
+      </div><br>
+      <div class="auth-badge">Pay Per Session</div>
+    </div>
+    <div class="tabs">
+      <button class="tab on" id="tab-login" onclick="switchTab('login')">Login</button>
+      <button class="tab" id="tab-reg" onclick="switchTab('reg')">Register</button>
+    </div>
+    <div id="aform"></div>
+  </div>
+</div>
+
+<div id="pg-main">
+  <div class="ovl" id="ovl" onclick="closeSidebar()"></div>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="slogo">
+        <div class="slogo-ic" id="slogo-ic">⚗️</div>
+        <div>
+          <div class="slogo-name" id="slogo-name">Science Courses</div>
+          <div class="slogo-sub">Pay Per Session</div>
+        </div>
+      </div>
+      <nav class="snav" id="snav"></nav>
+      <div class="suser" id="suser"></div>
+    </aside>
+    <div class="content">
+      <div class="mob-hd">
+        <button class="ham" onclick="toggleSidebar()">☰</button>
+        <span style="font-size:13px;font-weight:900;color:var(--pr)" id="mob-name">Science Courses</span>
+        <div style="width:33px"></div>
+      </div>
+      <div class="topbar">
+        <div class="tbt" id="tbt">Dashboard</div>
+        <div class="tba">
+          <button class="ib" onclick="navTo('notifs')">🔔<span class="ndot" id="ndot"></span></button>
+          <button class="ib" onclick="navTo('settings')">⚙️</button>
+        </div>
+      </div>
+      <div class="cb" id="cb"></div>
+    </div>
+  </div>
+</div>
+
+<div class="mov" id="mov" onclick="closeMov(event)">
+  <div class="mbox" id="mbox">
+    <div class="mhd"><h3 id="mtitle"></h3><button class="mclose" onclick="closeM()">✕</button></div>
+    <div class="mbody" id="mbody"></div>
+    <div class="mfoot" id="mfoot"></div>
+  </div>
+</div>
+<div id="toast"></div>
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBisZPbFRZAnFVjeKrNgTmUZqQOBpi0SGE",
+  authDomain: "science-courses.firebaseapp.com",
+  databaseURL: "https://science-courses-default-rtdb.firebaseio.com",
+  projectId: "science-courses",
+  storageBucket: "science-courses.firebasestorage.app",
+  messagingSenderId: "346136422549",
+  appId: "1:346136422549:web:296312f15952ca374c539c",
+  measurementId: "G-1H27LSQK3C"
+};
+
+<script>
+// ================================================================
+// CONFIG
+// ================================================================
+var CFG = {
+  name:"Science Courses", sub:"Online Learning",
+  logo:"", logoEmoji:"⚗️",
+  primaryColor:"#2563eb",
+  vfNum:"010 XXXX XXXX",
+  heroTitle:"Learn Science, One Session at a Time",
+  heroDesc:"Enroll in any course for free. Pay only for the sessions you need.",
+  showFeatures:true, showLatest:true,
+};
+
+// ================================================================
+// GRADES
+// ================================================================
+var GRADES = [
+  {id:"g1",name:"Grade 4"},{id:"g2",name:"Grade 5"},
+  {id:"g3",name:"Grade 6"},{id:"g4",name:"Prep 1"},
+  {id:"g5",name:"Prep 2"},{id:"g6",name:"Prep 3"},
+];
+var GRADE_BG = {
+  g1:"linear-gradient(135deg,#1e3a8a,#2563eb)",
+  g2:"linear-gradient(135deg,#14532d,#16a34a)",
+  g3:"linear-gradient(135deg,#4c1d95,#7c3aed)",
+  g4:"linear-gradient(135deg,#7c2d12,#ea580c)",
+  g5:"linear-gradient(135deg,#164e63,#0891b2)",
+  g6:"linear-gradient(135deg,#3b0764,#9333ea)",
+};
+var GRADE_EM = {g1:"🔬",g2:"⚗️",g3:"🧬",g4:"🧪",g5:"🔭",g6:"⚡"};
+function gradeById(id){return GRADES.find(function(g){return g.id===id;});}
+function gradeName(id){var g=gradeById(id);return g?g.name:id;}
+function gradeColor(id){return GRADE_BG[id]||"linear-gradient(135deg,#1e3a8a,#2563eb)";}
+function gradeEm(id){return GRADE_EM[id]||"🔬";}
+
+// ================================================================
+// DATA
+// ================================================================
+// COURSES - img: base64 or ""
+var COURSES = [
+  {id:1,title:"Grade 4 Science",gradeId:"g1",desc:"Full Grade 4 science curriculum — all units with exam practice.",pub:true,img:""},
+  {id:2,title:"Grade 5 Science",gradeId:"g2",desc:"Complete Grade 5 science.",pub:true,img:""},
+  {id:3,title:"Grade 6 Science",gradeId:"g3",desc:"Grade 6 science — all units.",pub:true,img:""},
+  {id:4,title:"Prep 1 Science",gradeId:"g4",desc:"Prep 1 full science curriculum.",pub:true,img:""},
+  {id:5,title:"Prep 2 Science",gradeId:"g5",desc:"Prep 2 science — all units.",pub:true,img:""},
+  {id:6,title:"Prep 3 Science",gradeId:"g6",desc:"Prep 3 science — final exam prep.",pub:true,img:""},
+];
+
+// SESSIONS - img: base64 or "", hwFile: base64, hwFileName: string
+// videos: array of {id, title, ytId, dur}
+// One price for all videos in session
+var SESSIONS = [
+  {id:1,cid:1,title:"Session 1 — Introduction",price:0,order:1,img:"",
+   hwFile:"",hwFileName:"",examId:null,
+   videos:[
+     {id:1,title:"Part 1 — Welcome",ytId:"dQw4w9WgXcQ",dur:"8:20"},
+     {id:2,title:"Part 2 — Course Overview",ytId:"dQw4w9WgXcQ",dur:"7:00"},
+   ]},
+  {id:2,cid:1,title:"Session 2 — The Five Senses",price:15,order:2,img:"",
+   hwFile:"",hwFileName:"",examId:1,
+   videos:[
+     {id:1,title:"Part 1 — Sight & Hearing",ytId:"dQw4w9WgXcQ",dur:"12:30"},
+     {id:2,title:"Part 2 — Touch, Taste & Smell",ytId:"dQw4w9WgXcQ",dur:"10:15"},
+     {id:3,title:"Part 3 — Revision",ytId:"dQw4w9WgXcQ",dur:"6:00"},
+   ]},
+  {id:3,cid:1,title:"Session 3 — Matter & Properties",price:15,order:3,img:"",
+   hwFile:"",hwFileName:"",examId:null,
+   videos:[
+     {id:1,title:"Part 1 — States of Matter",ytId:"dQw4w9WgXcQ",dur:"14:00"},
+   ]},
+  {id:4,cid:2,title:"Session 1 — Introduction",price:0,order:1,img:"",
+   hwFile:"",hwFileName:"",examId:null,
+   videos:[
+     {id:1,title:"Part 1 — Welcome to Grade 5",ytId:"dQw4w9WgXcQ",dur:"11:00"},
+   ]},
+  {id:5,cid:2,title:"Session 2 — Chemical Reactions",price:20,order:2,img:"",
+   hwFile:"",hwFileName:"",examId:null,
+   videos:[
+     {id:1,title:"Part 1 — What is a Chemical Reaction?",ytId:"dQw4w9WgXcQ",dur:"15:30"},
+     {id:2,title:"Part 2 — Types of Reactions",ytId:"dQw4w9WgXcQ",dur:"12:00"},
+   ]},
+];
+
+var EXAMS = [
+  {id:1,sessionId:2,title:"Quiz — The Five Senses",questions:[
+    {id:1,type:"mcq",text:"How many senses do humans have?",options:["3","4","5","6"],correct:2,pts:2},
+    {id:2,type:"mcq",text:"Which organ is responsible for hearing?",options:["Eye","Nose","Ear","Tongue"],correct:2,pts:2},
+    {id:3,type:"essay",text:"Explain how the sense of touch works and give one example.",pts:6},
+  ]},
+];
+
+var HW_SUBMISSIONS = [];
+var EXAM_SUBMISSIONS = [];
+var REQUESTS = [];
+var NOTIFS = [];
+var USERS = []; // Local hardcoded accounts removed. Use Firebase Authentication instead.
+
+// ================================================================
+// STATE
+// ================================================================
+var S = {
+  tab:"login",role:"student",user:null,page:"landing",
+  activeCourse:null,activeSession:0,activeVideo:0,
+  enrolledCourses:{},unlockedSessions:{},pendingSessions:{},
+  gradeFilter:"all",activeExamId:null,examAnswers:{},
+};
+var CU = null; // current user
+
+function isEnrolled(cid){return S.enrolledCourses[cid]===true;}
+function isUnlocked(sid){return S.unlockedSessions[sid]===true;}
+function isPending(sid){return S.pendingSessions[sid]===true;}
+function isFree(sid){var s=SESSIONS.find(function(x){return x.id===sid;});return s&&s.price===0;}
+function canWatch(sid){return CU&&(CU.role==="admin"||isFree(sid)||isUnlocked(sid));}
+function pendingCnt(){return REQUESTS.filter(function(r){return r.status==="pending";}).length;}
+function unreadCnt(){return NOTIFS.filter(function(n){return !n.read;}).length;}
+function hwPendingCnt(){return HW_SUBMISSIONS.filter(function(s){return s.grade===null;}).length;}
+
+// ================================================================
+// TOAST
+// ================================================================
+function toast(msg,type){
+  var t=document.getElementById("toast");
+  t.textContent=msg;
+  t.style.background=type==="success"?"#059669":type==="error"?"#dc2626":type==="warn"?"#d97706":"#0f172a";
+  t.classList.add("show");clearTimeout(t._t);
+  t._t=setTimeout(function(){t.classList.remove("show");},3000);
+}
+
+// ================================================================
+// CONFIG APPLY
+// ================================================================
+function applyConfig(){
+  ["auth-logo-name","slogo-name","mob-name"].forEach(function(id){
+    var el=document.getElementById(id);if(el)el.textContent=CFG.name;
+  });
+  var sub=document.getElementById("auth-logo-sub");if(sub)sub.textContent=CFG.sub;
+  ["auth-logo-ic","slogo-ic"].forEach(function(id){
+    var el=document.getElementById(id);if(!el)return;
+    if(CFG.logo){el.innerHTML='<img src="'+CFG.logo+'">';}
+    else{el.textContent=CFG.logoEmoji;}
+  });
+  document.documentElement.style.setProperty("--pr",CFG.primaryColor);
+}
+
+// ================================================================
+// FILE HELPERS
+// ================================================================
+function readFile(input,maxMB,onDone){
+  var file=input.files[0];if(!file)return;
+  if(file.size>maxMB*1024*1024){toast("File too large — max "+maxMB+"MB","error");return;}
+  var reader=new FileReader();
+  reader.onload=function(e){onDone(e.target.result,file.name);};
+  reader.readAsDataURL(file);
+}
+function downloadData(data,filename){
+  var a=document.createElement("a");a.href=data;a.download=filename;a.click();
+}
+
+// ================================================================
+// AUTH
+// ================================================================
+function switchTab(t){
+  S.tab=t;
+  document.getElementById("tab-login").className="tab"+(t==="login"?" on":"");
+  document.getElementById("tab-reg").className="tab"+(t==="reg"?" on":"");
+  renderAuthForm();
+}
+function renderAuthForm(){
+  var h="";
+  if(S.tab==="login"){
+    h+='<div class="fg"><label>Email</label><input class="fi" id="f-em" type="email" ></div>';
+    h+='<div class="fg"><label>Password</label><input class="fi" id="f-pw" type="password" ></div>';
+    h+='<div class="fg"><label>Role</label><div class="rg2"><div class="rb'+(S.role==="student"?" on":"")+'" onclick="setRole(\'student\')">👨‍🎓 Student</div><div class="rb'+(S.role==="admin"?" on":"")+'" onclick="setRole(\'admin\')">⚙️ Admin</div></div></div>';
+    h+='<button class="bauth" onclick="doLogin()">Login</button>';
+    h+='<div class="adiv">Quick Access</div>';
+    h+='<div class="qbtns"><button class="qbtn" onclick="quickLogin(\'admin\')">⚙️ Admin</button><button class="qbtn" onclick="quickLogin(\'student\')">🎓 Student</button></div>';
+    h+='<div class="afoot">No account? <span onclick="switchTab(\'reg\')">Register free</span></div>';
+  } else {
+    h+='<div class="fg"><label>Full Name</label><input class="fi" id="f-nm" placeholder="Mohamed Ahmed"></div>';
+    h+='<div class="fg"><label>Email</label><input class="fi" id="f-em" type="email"></div>';
+    h+='<div class="fg"><label>WhatsApp / Vodafone Cash</label><input class="fi" id="f-ph" placeholder="010xxxxxxxx"></div>';
+    h+='<div class="fg"><label>Password</label><input class="fi" id="f-pw" type="password" placeholder="Min 6 chars"></div>';
+    h+='<button class="bauth" onclick="doRegister()">Create Account</button>';
+    h+='<div class="afoot">Have account? <span onclick="switchTab(\'login\')">Login</span></div>';
+  }
+  document.getElementById("aform").innerHTML=h;
+}
+function setRole(r){S.role=r;document.querySelectorAll(".rb").forEach(function(el){el.className="rb"+(el.textContent.indexOf(r==="admin"?"Admin":"Student")>-1?" on":"");});}
+function quickLogin(role){CU=USERS.find(function(u){return u.role===role;});S.user=CU;startMain();}
+function doLogin(){
+  var em=document.getElementById("f-em")?document.getElementById("f-em").value.trim():"";
+  var pw=document.getElementById("f-pw")?document.getElementById("f-pw").value:"";
+  var u=USERS.find(function(u){return u.email===em&&u.pass===pw;});
+  if(!u){toast("Incorrect credentials","error");return;}
+  CU=u;S.user=u;startMain();
+}
+function doRegister(){
+  var nm=document.getElementById("f-nm")?document.getElementById("f-nm").value.trim():"";
+  var em=document.getElementById("f-em")?document.getElementById("f-em").value.trim():"";
+  var ph=document.getElementById("f-ph")?document.getElementById("f-ph").value.trim():"";
+  var pw=document.getElementById("f-pw")?document.getElementById("f-pw").value:"";
+  if(!nm||!em||!pw){toast("Fill all fields","error");return;}
+  if(pw.length<6){toast("Password min 6 chars","error");return;}
+  if(USERS.find(function(u){return u.email===em;})){toast("Email already registered","error");return;}
+  var u={id:USERS.length+1,name:nm,email:em,pass:pw,role:"student",av:nm.charAt(0),active:true,joined:new Date().toISOString().slice(0,10),phone:ph};
+  USERS.push(u);CU=u;S.user=u;startMain();
+}
+function startMain(){
+  document.getElementById("pg-auth").style.display="none";
+  document.getElementById("pg-main").style.display="block";
+  S.page=CU.role==="admin"?"dashboard":"landing";
+  updateDot();renderSidebar();renderPage();
+  toast("Welcome, "+CU.name.split(" ")[0]+"! 👋","success");
+}
+function logout(){
+  CU=null;S.user=null;S.activeCourse=null;S.page="landing";
+  S.enrolledCourses={};S.unlockedSessions={};S.pendingSessions={};
+  document.getElementById("pg-auth").style.display="flex";
+  document.getElementById("pg-main").style.display="none";
+}
+function updateDot(){
+  var dot=document.getElementById("ndot");if(!dot)return;
+  dot.style.display=(pendingCnt()+unreadCnt()+hwPendingCnt())>0?"block":"none";
+}
+
+// ================================================================
+// SIDEBAR
+// ================================================================
+function renderSidebar(){
+  var isAdmin=CU.role==="admin";
+  var adminNav=[
+    {ic:"📊",lb:"Dashboard",pg:"dashboard"},
+    {ic:"🌐",lb:"Landing Page",pg:"landing-admin"},
+    {ic:"📚",lb:"Courses",pg:"courses"},
+    {ic:"🎬",lb:"Sessions",pg:"sessions"},
+    {ic:"📋",lb:"Grades",pg:"grades"},
+    {ic:"📄",lb:"Homework",pg:"homework",badge:hwPendingCnt()},
+    {ic:"📝",lb:"Exams",pg:"exams"},
+    {ic:"💰",lb:"Payments",pg:"requests",badge:pendingCnt()},
+    {ic:"👥",lb:"Students",pg:"students"},
+    {ic:"🔔",lb:"Notifications",pg:"notifs",badge:unreadCnt()},
+    {ic:"⚙️",lb:"Settings",pg:"settings"},
+  ];
+  var studentNav=[
+    {ic:"🏠",lb:"Home",pg:"landing"},
+    {ic:"📚",lb:"Courses",pg:"allcourses"},
+    {ic:"🎬",lb:"My Sessions",pg:"mysessions"},
+    {ic:"📄",lb:"My Homework",pg:"myhomework"},
+    {ic:"📝",lb:"My Exams",pg:"myexams"},
+    {ic:"📋",lb:"My Requests",pg:"myreqs"},
+  ];
+  var items=isAdmin?adminNav:studentNav;
+  var h='<div class="nlbl">'+(isAdmin?"ADMIN":"STUDENT")+"</div>";
+  items.forEach(function(it){
+    var active=S.page===it.pg&&!S.activeCourse;
+    h+='<div class="ni'+(active?" on":"")+'" onclick="navTo(\''+it.pg+'\')"><span class="ni-ic">'+it.ic+"</span>"+it.lb;
+    if(it.badge&&it.badge>0)h+='<span class="nbadge">'+it.badge+"</span>";
+    h+="</div>";
+  });
+  document.getElementById("snav").innerHTML=h;
+  document.getElementById("suser").innerHTML=
+    '<div class="suc"><div class="sav">'+(CU.av||CU.name.charAt(0))+'</div>'+
+    '<div class="suf"><div class="sun">'+CU.name+'</div><div class="sur">'+(CU.role==="admin"?"Admin":"Student")+' • Online</div></div>'+
+    '<button class="lout" onclick="logout()">⬅</button></div>';
+}
+function navTo(pg){S.page=pg;S.activeCourse=null;S.gradeFilter="all";closeSidebar();renderSidebar();renderPage();}
+function toggleSidebar(){document.getElementById("sidebar").classList.toggle("open");document.getElementById("ovl").classList.toggle("show");}
+function closeSidebar(){document.getElementById("sidebar").classList.remove("open");document.getElementById("ovl").classList.remove("show");}
+
+// ================================================================
+// PAGE ROUTER
+// ================================================================
+var TITLES={dashboard:"Dashboard","landing-admin":"Landing Page Editor",courses:"Courses",sessions:"Sessions",grades:"Grade Management",homework:"Homework",exams:"Exams",requests:"Payment Requests",students:"Students",notifs:"Notifications",settings:"Settings",landing:"Home",allcourses:"Courses",mysessions:"My Sessions",myhomework:"My Homework",myexams:"My Exams",myreqs:"My Requests","take-exam":"Take Exam"};
+function renderPage(){
+  var tbt=document.getElementById("tbt");
+  if(S.activeCourse){
+    var cc=COURSES.find(function(c){return c.id===S.activeCourse;});
+    if(tbt)tbt.textContent=cc?cc.title:"";
+    document.getElementById("cb").innerHTML=renderDetail();
+    return;
+  }
+  if(S.page==="take-exam"){
+    if(tbt)tbt.textContent="Take Exam";
+    document.getElementById("cb").innerHTML=renderTakeExam();
+    return;
+  }
+  if(tbt)tbt.textContent=TITLES[S.page]||"";
+  var isAdmin=CU.role==="admin";
+  var map={
+    dashboard:renderAdminDash,"landing-admin":renderLandingAdmin,
+    courses:renderAdminCourses,sessions:renderAdminSessions,
+    grades:renderGrades,homework:renderHomework,
+    exams:renderExams,requests:renderRequests,
+    students:renderStudents,notifs:renderNotifs,settings:renderSettings,
+    landing:renderLanding,allcourses:renderAllCourses,
+    mysessions:renderMySessions,myhomework:renderMyHomework,
+    myexams:renderMyExams,myreqs:renderMyReqs,
+  };
+  var fn=map[S.page]||(isAdmin?renderAdminDash:renderLanding);
+  document.getElementById("cb").innerHTML=fn();
+}
+
+// ================================================================
+// GRADE TABS
+// ================================================================
+function gradeTabs(){
+  var h='<div class="grade-tabs"><button class="gtab'+(S.gradeFilter==="all"?" on":"")+'" onclick="setGrade(\'all\')">All</button>';
+  GRADES.forEach(function(g){h+='<button class="gtab'+(S.gradeFilter===g.id?" on":"")+'" onclick="setGrade(\''+g.id+'\')">'+g.name+'</button>';});
+  return h+"</div>";
+}
+function setGrade(g){S.gradeFilter=g;renderPage();}
+
+function statCard(ic,cls,val,lbl){return '<div class="scard"><div class="si '+cls+'">'+ic+'</div><div class="sv">'+val+'</div><div class="sl">'+lbl+'</div></div>';}
+
+// ================================================================
+// COURSE CARD
+// ================================================================
+function courseCard(c,adminMode){
+  var ss=SESSIONS.filter(function(s){return s.cid===c.id;});
+  var freeCnt=ss.filter(function(s){return s.price===0;}).length;
+  var paidPrices=ss.filter(function(s){return s.price>0;}).map(function(s){return s.price;});
+  var minPrice=paidPrices.length?Math.min.apply(null,paidPrices):0;
+  var bg=gradeColor(c.gradeId);var em=gradeEm(c.gradeId);
+  var enrolled=isEnrolled(c.id);
+  var h='<div class="cc" onclick="openCourse('+c.id+')">';
+  h+='<div class="cth" style="background:'+bg+'">';
+  if(c.img){h+='<img src="'+c.img+'" style="width:100%;height:100%;object-fit:cover">';}
+  else{h+='<div class="cth-em">'+em+'</div>';}
+  h+='<span class="ctag-gr">'+gradeName(c.gradeId)+'</span>';
+  if(enrolled&&!adminMode)h+='<span class="ctag-enrolled">✅ Enrolled</span>';
+  h+='</div><div class="cbody">';
+  h+='<div class="cc-grade">'+gradeName(c.gradeId)+'</div>';
+  h+='<div class="cc-title">'+c.title+'</div>';
+  var totalVideos=ss.reduce(function(a,s){return a+(s.videos?s.videos.length:0);},0);
+  h+='<div class="cc-meta"><span>🎬 '+ss.length+' sessions</span><span>▶️ '+totalVideos+' videos</span><span>🆓 '+freeCnt+' free</span></div>';
+  if(!adminMode){
+    if(!enrolled)h+='<div class="pill pill-gn" style="margin-bottom:.55rem">✅ Free Enrollment</div>';
+    if(paidPrices.length)h+='<div class="pill pill-or" style="margin-bottom:.55rem">From '+minPrice+' EGP / session</div>';
+  }
+  if(adminMode){
+    h+='<div style="margin-bottom:.55rem"><span class="bd '+(c.pub?"bd-gr":"bd-gy")+'">'+(c.pub?"Published":"Draft")+'</span></div>';
+    h+='<div style="display:flex;gap:.35rem"><button class="btn btn-sm btn-se" style="flex:1" onclick="event.stopPropagation();openEditCourse('+c.id+')">✏️ Edit</button><button class="btn btn-sm btn-re" onclick="event.stopPropagation();delCourse('+c.id+')">🗑</button></div>';
+  } else if(enrolled){
+    h+='<button class="btn btn-pr btn-block" onclick="event.stopPropagation();openCourse('+c.id+')">View Sessions →</button>';
+  } else {
+    h+='<button class="btn btn-gn btn-block" onclick="event.stopPropagation();enrollCourse('+c.id+')">✅ Enroll Free</button>';
+  }
+  h+='</div></div>';
+  return h;
+}
+
+function enrollCourse(id){
+  if(isEnrolled(id)){toast("Already enrolled","error");return;}
+  S.enrolledCourses[id]=true;
+  var c=COURSES.find(function(x){return x.id===id;});
+  toast("✅ Enrolled in "+c.title+" — Free!","success");renderPage();
+}
+
+// ================================================================
+// LANDING
+// ================================================================
+function renderLanding(){
+  var h='<div class="landing-hero"><h1>'+CFG.heroTitle+'</h1><p>'+CFG.heroDesc+'</p>';
+  h+='<div class="landing-hero-btns"><button class="hero-btn-w" onclick="navTo(\'allcourses\')">Browse Courses</button><button class="hero-btn-o" onclick="navTo(\'mysessions\')">My Sessions</button></div></div>';
+  if(CFG.showFeatures){
+    h+='<div class="feat-grid">';
+    h+='<div class="feat-card"><div class="feat-ic">🆓</div><div class="feat-title">Free Enrollment</div><div class="feat-desc">Join any course for free.</div></div>';
+    h+='<div class="feat-card"><div class="feat-ic">💰</div><div class="feat-title">Pay Per Session</div><div class="feat-desc">Buy only the sessions you need.</div></div>';
+    h+='<div class="feat-card"><div class="feat-ic">▶️</div><div class="feat-title">Multiple Videos</div><div class="feat-desc">Each session has multiple video parts.</div></div>';
+    h+='<div class="feat-card"><div class="feat-ic">📄</div><div class="feat-title">Homework & Exams</div><div class="feat-desc">Submit PDF homework, take quizzes.</div></div>';
+    h+='</div>';
+  }
+  if(CFG.showLatest){
+    var latest=SESSIONS.slice().reverse().slice(0,6);
+    h+='<div class="sh"><h3>🆕 Latest Sessions</h3><span class="sa" onclick="navTo(\'allcourses\')">All Courses</span></div>';
+    h+='<div class="latest-grid">';
+    latest.forEach(function(s){
+      var c=COURSES.find(function(cc){return cc.id===s.cid;});if(!c)return;
+      var bg=gradeColor(c.gradeId);
+      h+='<div class="ls-card" onclick="openCourse('+c.id+')">';
+      h+='<div class="ls-thumb" style="background:'+bg+'">';
+      if(s.img)h+='<img src="'+s.img+'">';
+      else h+=gradeEm(c.gradeId);
+      h+='</div>';
+      h+='<div class="ls-info"><div class="ls-title">'+s.title+'</div>';
+      h+='<div class="ls-meta">'+c.title+' • '+(s.price===0?"Free":s.price+" EGP")+'</div></div>';
+      h+='</div>';
+    });
+    h+='</div>';
+  }
+  return h;
+}
+
+// ================================================================
+// ADMIN DASHBOARD
+// ================================================================
+function renderAdminDash(){
+  var pc=pendingCnt(),hw=hwPendingCnt();
+  var h='<div class="wb"><div class="wb-tx"><h2>Welcome, '+CU.name+'! 👋</h2><p>'+CFG.name+' Admin Panel</p></div><div class="wb-art">⚗️</div></div>';
+  h+='<div class="sg">';
+  h+=statCard("👥","si-bl",USERS.filter(function(u){return u.role==="student";}).length,"Students");
+  h+=statCard("🎬","si-pu",SESSIONS.length,"Sessions");
+  h+=statCard("▶️","si-cy",SESSIONS.reduce(function(a,s){return a+(s.videos?s.videos.length:0);},0),"Total Videos");
+  h+=statCard("💰","si-am",pc,"Payment Requests");
+  h+=statCard("📄","si-gr",hw,"HW Pending");
+  h+=statCard("📝","si-re",EXAMS.length,"Exams");
+  h+='</div>';
+  if(pc>0){
+    h+='<div style="background:var(--or-l);border:1.5px solid #fcd34d;border-radius:var(--r2);padding:.9rem 1.1rem;margin-bottom:.85rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.65rem">';
+    h+='<div><div style="font-size:14px;font-weight:700;color:var(--or)">⚠️ '+pc+' payment request(s) waiting</div>';
+    h+='<div style="font-size:12px;color:var(--or);margin-top:.15rem">Confirm payment then approve to unlock session.</div></div>';
+    h+='<button class="btn btn-or" onclick="navTo(\'requests\')">Review</button></div>';
+  }
+  h+='<div class="two">';
+  h+='<div class="tc"><div class="tch"><h3>💰 Latest Requests</h3><span class="sa" onclick="navTo(\'requests\')">All</span></div>';
+  h+='<table><thead><tr><th>Student</th><th>Session</th><th>EGP</th><th>Status</th></tr></thead><tbody>';
+  REQUESTS.slice(0,5).forEach(function(r){
+    h+='<tr><td><div class="tdu"><div class="tdav">'+r.userName.charAt(0)+'</div>'+r.userName+'</div></td>';
+    h+='<td style="font-size:12px">'+r.sessionName.split("—")[0].trim()+'</td>';
+    h+='<td style="font-weight:700;color:var(--or)">'+r.amount+'</td>';
+    h+='<td><span class="bd '+(r.status==="approved"?"bd-gr":r.status==="rejected"?"bd-re":"bd-am")+'">'+(r.status==="approved"?"✅":r.status==="rejected"?"❌":"⏳")+'</span></td></tr>';
+  });
+  if(REQUESTS.length===0)h+='<tr><td colspan="4" style="text-align:center;color:var(--tx3);padding:1rem">No requests yet</td></tr>';
+  h+='</tbody></table></div>';
+  h+='<div class="tc"><div class="tch"><h3>📄 HW to Grade</h3><span class="sa" onclick="navTo(\'homework\')">All</span></div>';
+  h+='<table><thead><tr><th>Student</th><th>Session</th><th>Grade</th></tr></thead><tbody>';
+  HW_SUBMISSIONS.slice(0,4).forEach(function(sub){
+    var sess=SESSIONS.find(function(s){return s.id===sub.sessionId;});
+    h+='<tr><td><div class="tdu"><div class="tdav">'+sub.userName.charAt(0)+'</div>'+sub.userName+'</div></td>';
+    h+='<td style="font-size:12px">'+(sess?sess.title.split("—")[0].trim():"—")+'</td>';
+    h+='<td>'+(sub.grade!==null?'<span class="bd bd-gr">'+sub.grade+'/10</span>':'<span class="bd bd-am">Pending</span>')+'</td></tr>';
+  });
+  if(HW_SUBMISSIONS.length===0)h+='<tr><td colspan="3" style="text-align:center;color:var(--tx3);padding:1rem">No submissions yet</td></tr>';
+  h+='</tbody></table></div></div>';
+  return h;
+}
+
+// ================================================================
+// LANDING ADMIN
+// ================================================================
+function renderLandingAdmin(){
+  var h='<div class="ph"><div><div class="ph-t">Landing Page Editor</div></div><button class="btn btn-gn" onclick="saveLanding()">💾 Save</button></div>';
+  h+='<div class="settings-sec"><h3>🌐 Hero Section</h3>';
+  h+='<div class="fg"><label>Title</label><input class="fi" id="lnd-t" value="'+CFG.heroTitle+'"></div>';
+  h+='<div class="fg"><label>Description</label><textarea class="fi fi-ta" id="lnd-d">'+CFG.heroDesc+'</textarea></div></div>';
+  h+='<div class="settings-sec"><h3>🎛️ Sections</h3>';
+  h+='<div class="toggle-row"><div>Show Features Section</div><button class="tgl'+(CFG.showFeatures?" on":"")+'" id="lnd-feat" onclick="this.classList.toggle(\'on\')"></button></div>';
+  h+='<div class="toggle-row"><div>Show Latest Sessions</div><button class="tgl'+(CFG.showLatest?" on":"")+'" id="lnd-lat" onclick="this.classList.toggle(\'on\')"></button></div>';
+  h+='</div>';
+  return h;
+}
+function saveLanding(){
+  var t=document.getElementById("lnd-t");if(t)CFG.heroTitle=t.value.trim();
+  var d=document.getElementById("lnd-d");if(d)CFG.heroDesc=d.value.trim();
+  var f=document.getElementById("lnd-feat");if(f)CFG.showFeatures=f.classList.contains("on");
+  var l=document.getElementById("lnd-lat");if(l)CFG.showLatest=l.classList.contains("on");
+  toast("✅ Landing page saved","success");renderPage();
+}
+
+// ================================================================
+// GRADE MANAGEMENT
+// ================================================================
+function renderGrades(){
+  var h='<div class="ph"><div><div class="ph-t">Grade Management</div><div class="ph-s">Add, edit, remove grades freely</div></div><button class="btn btn-pr" onclick="openAddGrade()">+ Add Grade</button></div>';
+  h+='<div class="tc"><table><thead><tr><th>Grade</th><th>Name</th><th>Courses</th><th>Sessions</th><th>Actions</th></tr></thead><tbody>';
+  GRADES.forEach(function(g){
+    var courses=COURSES.filter(function(c){return c.gradeId===g.id;});
+    var sessions=SESSIONS.filter(function(s){return courses.some(function(c){return c.id===s.cid;});});
+    h+='<tr>';
+    h+='<td><div style="width:34px;height:34px;border-radius:8px;background:'+gradeColor(g.id)+';display:flex;align-items:center;justify-content:center;font-size:16px">'+gradeEm(g.id)+'</div></td>';
+    h+='<td style="font-weight:700;font-size:13.5px">'+g.name+'</td>';
+    h+='<td><span class="bd bd-bl">'+courses.length+'</span></td>';
+    h+='<td><span class="bd bd-gy">'+sessions.length+'</span></td>';
+    h+='<td><div style="display:flex;gap:.3rem"><button class="btn btn-sm btn-se" onclick="openEditGrade(\''+g.id+'\')">✏️ Edit</button><button class="btn btn-sm btn-re" onclick="delGrade(\''+g.id+'\')">🗑</button></div></td></tr>';
+  });
+  h+='</tbody></table></div>';
+  return h;
+}
+function openAddGrade(){
+  document.getElementById("mtitle").textContent="Add Grade";
+  document.getElementById("mbox").className="mbox";
+  var h='<div class="fg"><label>Grade Name</label><input class="fi" id="m-gname" placeholder="e.g. Grade 7, KG 2, University Year 1"></div>';
+  h+='<div class="fg"><label>Emoji</label><input class="fi" id="m-gem" placeholder="🌟" maxlength="4" value="🌟"></div>';
+  h+='<div class="fg"><label>Color (hex)</label><div style="display:flex;gap:.5rem;align-items:center"><input class="fi" id="m-gcol" placeholder="#1e3a8a" value="#1e3a8a"><input type="color" id="m-gcol-pick" value="#1e3a8a" oninput="document.getElementById(\'m-gcol\').value=this.value" style="width:38px;height:38px;border:none;border-radius:7px;cursor:pointer;padding:2px"></div></div>';
+  document.getElementById("mbody").innerHTML=h;
+  document.getElementById("mfoot").innerHTML='<button class="btn btn-se" onclick="closeM()">Cancel</button><button class="btn btn-pr" onclick="saveGrade()">💾 Add</button>';
+  document.getElementById("mov").classList.add("show");
+}
+function openEditGrade(id){
+  var g=gradeById(id);if(!g)return;
+  document.getElementById("mtitle").textContent="Edit Grade";
+  var col=gradeColor(id).match(/#[a-f0-9]{6}/i);
+  var curCol=col?col[0]:"#1e3a8a";
+  var h='<div class="fg"><label>Grade Name</label><input class="fi" id="m-gname" value="'+g.name+'"></div>';
+  h+='<div class="fg"><label>Emoji</label><input class="fi" id="m-gem" value="'+(GRADE_EM[id]||"🔬")+'" maxlength="4"></div>';
+  h+='<div class="fg"><label>Color (hex)</label><div style="display:flex;gap:.5rem;align-items:center"><input class="fi" id="m-gcol" value="'+curCol+'"><input type="color" id="m-gcol-pick" value="'+curCol+'" oninput="document.getElementById(\'m-gcol\').value=this.value" style="width:38px;height:38px;border:none;border-radius:7px;cursor:pointer;padding:2px"></div></div>';
+  document.getElementById("mbody").innerHTML=h;
+  document.getElementById("mfoot").innerHTML='<button class="btn btn-se" onclick="closeM()">Cancel</button><button class="btn btn-pr" onclick="updateGrade(\''+id+'\')">💾 Save</button>';
+  document.getElementById("mov").classList.add("show");
+}
+function saveGrade(){
+  var name=document.getElementById("m-gname")?document.getElementById("m-gname").value.trim():"";
+  var em=document.getElementById("m-gem")?document.getElementById("m-gem").value.trim():"🌟";
+  var col=document.getElementById("m-gcol")?document.getElementById("m-gcol").value.trim():"#1e3a8a";
+  if(!name){toast("Enter grade name","error");return;}
+  var newId="g"+(Date.now());
+  GRADES.push({id:newId,name:name});
+  GRADE_EM[newId]=em;
+  GRADE_BG[newId]="linear-gradient(135deg,"+col+","+col+")";
+  toast("✅ Grade added","success");closeM();renderPage();
+}
+function updateGrade(id){
+  var g=gradeById(id);if(!g)return;
+  var n=document.getElementById("m-gname");if(n&&n.value.trim())g.name=n.value.trim();
+  var e=document.getElementById("m-gem");if(e&&e.value.trim())GRADE_EM[id]=e.value.trim();
+  var c=document.getElementById("m-gcol");if(c&&c.value)GRADE_BG[id]="linear-gradient(135deg,"+c.value+","+c.value+")";
+  toast("✅ Grade updated","success");closeM();renderPage();
+}
+function delGrade(id){
+  if(COURSES.filter(function(c){return c.gradeId===id;}).length>0){toast("Delete courses in this grade first","error");return;}
+  if(!confirm("Delete grade?"))return;
+  var idx=GRADES.findIndex(function(g){return g.id===id;});
+  if(idx>-1)GRADES.splice(idx,1);
+  toast("Deleted","success");renderPage();
+}
+
+// ================================================================
+// ADMIN COURSES
+// ================================================================
+function renderAdminCourses(){
+  var filtered=COURSES.filter(function(c){return S.gradeFilter==="all"||c.gradeId===S.gradeFilter;});
+  var h='<div class="ph"><div><div class="ph-t">Courses</div><div class="ph-s">'+COURSES.length+' courses — free enrollment</div></div><button class="btn btn-pr" onclick="openAddCourse()">+ Add Course</button></div>';
+  h+=gradeTabs();
+  h+='<div class="cg">';
+  filtered.forEach(function(c){h+=courseCard(c,true);});
+  if(!filtered.length)h+='<div class="es"><div class="es-ic">📭</div><h3>No courses</h3></div>';
+  h+='</div>';
+  return h;
+}
+
+function openAddCourse(){
+  document.getElementById("mtitle").textContent="Add Course";
+  document.getElementById("mbox").className="mbox";
+  var h='<div class="fg"><label>Course Title</label><input class="fi" id="m-t" placeholder="e.g. Grade 4 Science"></div>';
+  h+='<div class="fg"><label>Grade</label><select class="fi" id="m-g">';
+  GRADES.forEach(function(g){h+='<option value="'+g.id+'">'+g.name+'</option>';});
+  h+='</select></div>';
+  h+='<div class="fg"><label>Description</label><textarea class="fi fi-ta" id="m-d" placeholder="Short description..."></textarea></div>';
+  h+=imgUploadField("m-cimg",null,"Course Thumbnail");
+  document.getElementById("mbody").innerHTML=h;
+  document.getElementById("mfoot").innerHTML='<button class="btn btn-se" onclick="closeM()">Cancel</button><button class="btn btn-pr" onclick="saveCourse()">💾 Save</button>';
+  document.getElementById("mov").classList.add("show");
+}
+function openEditCourse(id){
+  var c=COURSES.find(function(cc){return cc.id===id;});if(!c)return;
+  document.getElementById("mtitle").textContent="Edit Course";
+  document.getElementById("mbox").className="mbox";
+  var h='<div class="fg"><label>Title</label><input class="fi" id="m-t" value="'+c.title+'"></div>';
+  h+='<div class="fg"><label>Grade</label><select class="fi" id="m-g">';
+  GRADES.forEach(function(g){h+='<option value="'+g.id+'"'+(c.gradeId===g.id?" selected":"")+'>'+g.name+'</option>';});
+  h+='</select></div>';
+  h+='<div class="fg"><label>Description</label><textarea class="fi fi-ta" id="m-d">'+c.desc+'</textarea></div>';
+  h+='<div class="fg"><label>Status</label><select class="fi" id="m-pub"><option value="1"'+(c.pub?" selected":"")+'>Published</option><option value="0"'+(!c.pub?" selected":"")+'>Draft</option></select></div>';
+  h+=imgUploadField("m-cimg",c.img,"Course Thumbnail");
+  document.getElementById("mbody").innerHTML=h;
+  document.getElementById("mfoot").innerHTML='<button class="btn btn-se" onclick="closeM()">Cancel</button><button class="btn btn-pr" onclick="updateCourse('+id+')">💾 Save</button>';
+  document.getElementById("mov").classList.add("show");
+}
+function saveCourse(){
+  var t=document.getElementById("m-t");var title=t?t.value.trim():"";
+  if(!title){toast("Enter course title","error");return;}
+  var grade=document.getElementById("m-g")?document.getElementById("m-g").value:"g1";
+  var desc=document.getElementById("m-d")?document.getElementById("m-d").value.trim():"";
+  var img=document.getElementById("m-cimg-data")?document.getElementById("m-cimg-data").value:"";
+  COURSES.push({id:COURSES.length+1,title:title,gradeId:grade,desc:desc||title,pub:true,img:img});
+  toast("✅ Course added","success");closeM();renderPage();
+}
+function updateCourse(id){
+  var c=COURSES.find(function(cc){return cc.id===id;});if(!c)return;
+  var t=document.getElementById("m-t");if(t&&t.value.trim())c.title=t.value.trim();
+  var g=document.getElementById("m-g");if(g)c.gradeId=g.value;
+  var d=document.getElementById("m-d");if(d)c.desc=d.value.trim();
+  var p=document.getElementById("m-pub");if(p)c.pub=p.value==="1";
+  var img=document.getElementById("m-cimg-data");if(img&&img.value)c.img=img.value;
+  toast("✅ Course updated","success");closeM();renderPage();
+}
+function delCourse(id){
+  if(!confirm("Delete course?"))return;
+  var idx=COURSES.findIndex(function(c){return c.id===id;});if(idx>-1)COURSES.splice(idx,1);
+  for(var i=SESSIONS.length-1;i>=0;i--){if(SESSIONS[i].cid===id)SESSIONS.splice(i,1);}
+  toast("Deleted","success");renderPage();
+}
+
+// ================================================================
+// ADMIN SESSIONS (with multi-video)
+// ================================================================
+function renderAdminSessions(){
+  var h='<div class="ph"><div><div class="ph-t">Sessions</div><div class="ph-s">Each session can have multiple videos at the same price</div></div><button class="btn btn-pr" onclick="openAddSession()">+ Add Session</button></div>';
+  h+='<div class="tc"><div class="tch"><h3>All Sessions</h3></div>';
+  h+='<table><thead><tr><th>#</th><th>Session</th><th>Course</th><th>Videos</th><th>Price</th><th>HW</th><th>Exam</th><th>Actions</th></tr></thead><tbody>';
+  SESSIONS.forEach(function(s){
+    var c=COURSES.find(function(cc){return cc.id===s.cid;});
+    var vCount=s.videos?s.videos.length:0;
+    h+='<tr><td style="color:var(--tx3);font-size:11px">'+s.id+'</td>';
+    h+='<td style="font-weight:600;font-size:12.5px">'+s.title+'</td>';
+    h+='<td><span class="bd bd-bl">'+(c?gradeName(c.gradeId):"—")+'</span></td>';
+    h+='<td><span class="bd bd-pu">▶️ '+vCount+'</span></td>';
+    h+='<td><span class="bd '+(s.price===0?"bd-gr":"bd-am")+'">'+(s.price===0?"Free":s.price+" EGP")+'</span></td>';
+    h+='<td>'+(s.hwFile?'<span class="bd bd-cy">📄</span>':'<span class="bd bd-gy">—</span>')+'</td>';
+    h+='<td>'+(s.examId?'<span class="bd bd-pu">📝</span>':'<span class="bd bd-gy">—</span>')+'</td>';
+    h+='<td><div style="display:flex;gap:.3rem"><button class="btn btn-sm btn-se" onclick="openEditSession('+s.id+')">✏️</button><button class="btn btn-sm btn-re" onclick="delSession('+s.id+')">🗑</button></div></td></tr>';
+  });
+  h+='</tbody></table></div>';
+  return h;
+}
+
+// Shared: image upload field builder
+function imgUploadField(fieldId, currentImg, label){
+  var h='<div class="fg"><label>'+label+' (optional)</label>';
+  if(currentImg){
+    h+='<img src="'+currentImg+'" class="img-preview" id="'+fieldId+'-prev">';
+  } else {
+    h+='<div id="'+fieldId+'-prev"></div>';
+  }
+  h+='<label class="upzone" style="margin-top:.5rem;display:block">';
+  h+='<div class="upzone-ic">🖼️</div><p>Click to upload image</p><small>JPG, PNG, WebP — max 3MB</small>';
+  h+='<input type="file" accept="image/*" style="display:none" onchange="handleImgUpload(this,\''+fieldId+'\')">';
+  h+='</label>';
+  h+='<input type="hidden" id="'+fieldId+'-data" value="'+(currentImg||'')+'">';
+  h+='</div>';
+  return h;
+}
+function handleImgUpload(input,fieldId){
+  readFile(input,3,function(data){
+    var prev=document.getElementById(fieldId+"-prev");
+    if(prev)prev.innerHTML='<img src="'+data+'" class="img-preview">';
+    var hidden=document.getElementById(fieldId+"-data");
+    if(hidden)hidden.value=data;
+  });
+}
+
+// PDF upload field
+function pdfUploadField(sessionId, currentFile, currentName){
+  var h='<div class="fg"><label>📄 Homework PDF (optional)</label>';
+  if(currentFile&&currentName){
+    h+='<div class="pdf-preview" id="pdf-prev-'+sessionId+'">📄 '+currentName+'</div>';
+  } else {
+    h+='<div id="pdf-prev-'+sessionId+'"></div>';
+  }
+  h+='<label class="upzone" style="margin-top:.5rem;display:block">';
+  h+='<div class="upzone-ic">📄</div><p>Click to upload PDF</p><small>PDF only — max 10MB</small>';
+  h+='<input type="file" accept=".pdf" style="display:none" onchange="handlePDFUpload(this,\''+sessionId+'\')">';
+  h+='</label>';
+  h+='<input type="hidden" id="pdf-data-'+sessionId+'" value="'+(currentFile||'')+'">';
+  h+='<input type="hidden" id="pdf-name-'+sessionId+'" value="'+(currentName||'')+'">';
+  h+='</div>';
+  return h;
+}
+function handlePDFUpload(input,sessionId){
+  readFile(input,10,function(data,name){
+    var prev=document.getElementById("pdf-prev-"+sessionId);
+    if(prev)prev.innerHTML='<div class="pdf-preview">📄 '+name+'</div>';
+    var d=document.getElementById("pdf-data-"+sessionId);if(d)d.value=data;
+    var n=document.getElementById("pdf-name-"+sessionId);if(n)n.value=name;
+    toast("✅ PDF ready: "+name,"success");
+  });
+}
+
+// Video entries builder
+var _vidList = [];
+function buildVideoEntries(){
+  var h='<div id="vid-list">';
+  _vidList.forEach(function(v,i){
+    h+='<div class="video-entry" id="ve-'+v.uid+'">';
+    h+='<div class="video-entry-num">Video '+(i+1)+'</div>';
+    h+='<button class="del-video-btn" onclick="removeVideo(\''+v.uid+'\')" title="Remove">✕</button>';
+    h+='<div class="two-col">';
+    h+='<div class="fg" style="margin-bottom:.5rem"><label>Title</label><input class="fi" id="vt-'+v.uid+'" value="'+(v.title||'Part '+(i+1))+'" placeholder="Part '+(i+1)+'..."></div>';
+    h+='<div class="fg" style="margin-bottom:.5rem"><label>Duration</label><input class="fi" id="vd-'+v.uid+'" value="'+(v.dur||'')+'" placeholder="12:30"></div>';
+    h+='</div>';
+    h+='<div class="fg" style="margin-bottom:0"><label>YouTube Video ID</label><input class="fi" id="vy-'+v.uid+'" value="'+(v.ytId||'')+'" placeholder="dQw4w9WgXcQ"><div style="font-size:11px;color:var(--tx3);margin-top:.25rem">youtube.com/watch?v=<strong>ID</strong></div></div>';
+    h+='</div>';
+  });
+  h+='</div>';
+  h+='<button class="btn btn-se btn-sm" onclick="addVideoEntry()" style="margin-top:.5rem">+ Add Another Video</button>';
+  return h;
+}
+function refreshVideoList(){
+  var container=document.getElementById("vid-list");
+  if(!container)return;
+  var h='';
+  _vidList.forEach(function(v,i){
+    h+='<div class="video-entry" id="ve-'+v.uid+'">';
+    h+='<div class="video-entry-num">Video '+(i+1)+'</div>';
+    h+='<button class="del-video-btn" onclick="removeVideo(\''+v.uid+'\')" title="Remove">✕</button>';
+    h+='<div class="two-col">';
+    h+='<div class="fg" style="margin-bottom:.5rem"><label>Title</label><input class="fi" id="vt-'+v.uid+'" value="'+(v.title||'Part '+(i+1))+'" placeholder="Part '+(i+1)+'..."></div>';
+    h+='<div class="fg" style="margin-bottom:.5rem"><label>Duration</label><input class="fi" id="vd-'+v.uid+'" value="'+(v.dur||'')+'" placeholder="12:30"></div>';
+    h+='</div>';
+    h+='<div class="fg" style="margin-bottom:0"><label>YouTube ID</label><input class="fi" id="vy-'+v.uid+'" value="'+(v.ytId||'')+'" placeholder="dQw4w9WgXcQ"></div>';
+    h+='</div>';
+  });
+  container.innerHTML=h;
+}
+function addVideoEntry(){
+  // Save current values before refresh
+  saveCurrentVideoValues();
+  _vidList.push({uid:"v"+Date.now(),title:"",ytId:"",dur:""});
+  refreshVideoList();
+}
+function removeVideo(uid){
+  saveCurrentVideoValues();
+  _vidList=_vidList.filter(function(v){return v.uid!==uid;});
+  refreshVideoList();
+}
+function saveCurrentVideoValues(){
+  _vidList.forEach(function(v){
+    var t=document.getElementById("vt-"+v.uid);if(t)v.title=t.value.trim();
+    var d=document.getElementById("vd-"+v.uid);if(d)v.dur=d.value.trim();
+    var y=document.getElementById("vy-"+v.uid);if(y)v.ytId=y.value.trim();
+  });
+}
+function collectVideos(){
+  saveCurrentVideoValues();
+  var vids=[];
+  _vidList.forEach(function(v,i){
+    vids.push({id:i+1,title:v.title||"Part "+(i+1),ytId:v.ytId,dur:v.dur||"00:00"});
+  });
+  return vids;
+}
+
+function openAddSession(){
+  _vidList=[{uid:"v1",title:"Part 1",ytId:"",dur:""}];
+  document.getElementById("mtitle").textContent="Add Session";
+  document.getElementById("mbox").className="mbox mbox-lg";
+  var h='<div class="fg"><label>Course</label><select class="fi" id="m-cid">';
+  COURSES.forEach(function(c){h+='<option value="'+c.id+'">'+c.title+'</option>';});
+  h+='</select></div>';
+  h+='<div class="two-col">';
+  h+='<div class="fg"><label>Session Title</label><input class="fi" id="m-t" placeholder="Session 1 — Introduction"></div>';
+  h+='<div class="fg"><label>Price EGP (0 = free)</label><input class="fi" type="number" id="m-p" value="0" min="0"></div>';
+  h+='</div>';
+  h+=imgUploadField("m-simg",null,"Session Thumbnail");
+  h+='<hr style="border:none;border-top:1px solid var(--bd);margin:.75rem 0">';
+  h+='<div style="font-size:13px;font-weight:700;margin-bottom:.6rem">📹 Videos in this Session</div>';
+  h+='<div style="font-size:12px;color:var(--tx2);margin-bottom:.75rem">All videos share the same price. Student buys the session once and gets all videos.</div>';
+  h+=buildVideoEntries();
+  h+='<hr style="border:none;border-top:1px solid var(--bd);margin:.75rem 0">';
+  h+=pdfUploadField("new","","");
+  h+='<div class="fg"><label>📝 Link Exam (optional)</label><select class="fi" id="m-exam"><option value="">— No Exam —</option>';
+  EXAMS.forEach(function(e){h+='<option value="'+e.id+'">'+e.title+'</option>';});
+  h+='</select></div>';
+  h+='<div class="fg"><label>Order</label><input class="fi" type="number" id="m-ord" value="'+(SESSIONS.length+1)+'" min="1"></div>';
+  document.getElementById("mbody").innerHTML=h;
+  document.getElementById("mfoot").innerHTML='<button class="btn btn-se" onclick="closeM()">Cancel</button><button class="btn btn-pr" onclick="saveSession()">💾 Add Session</button>';
+  document.getElementById("mov").classList.add("show");
+}
+
+function openEditSession(id){
+  var s=SESSIONS.find(function(x){return x.id===id;});if(!s)return;
+  _vidList=(s.videos||[]).map(function(v,i){return {uid:"v"+i,title:v.title,ytId:v.ytId,dur:v.dur};});
+  if(_vidList.length===0)_vidList=[{uid:"v0",title:"Part 1",ytId:"",dur:""}];
+  document.getElementById("mtitle").textContent="Edit Session";
+  document.getElementById("mbox").className="mbox mbox-lg";
+  var h='<div class="two-col">';
+  h+='<div class="fg"><label>Session Title</label><input class="fi" id="m-t" value="'+s.title+'"></div>';
+  h+='<div class="fg"><label>Price EGP</label><input class="fi" type="number" id="m-p" value="'+s.price+'" min="0"></div>';
+  h+='</div>';
+  h+=imgUploadField("m-simg",s.img||null,"Session Thumbnail");
+  h+='<hr style="border:none;border-top:1px solid var(--bd);margin:.75rem 0">';
+  h+='<div style="font-size:13px;font-weight:700;margin-bottom:.6rem">📹 Videos in this Session</div>';
+  h+=buildVideoEntries();
+  h+='<hr style="border:none;border-top:1px solid var(--bd);margin:.75rem 0">';
+  h+=pdfUploadField(id,s.hwFile||"",s.hwFileName||"");
+  h+='<div class="fg"><label>📝 Link Exam</label><select class="fi" id="m-exam"><option value="">— No Exam —</option>';
+  EXAMS.forEach(function(e){h+='<option value="'+e.id+'"'+(s.examId===e.id?" selected":"")+'>'+e.title+'</option>';});
+  h+='</select></div>';
+  document.getElementById("mbody").innerHTML=h;
+  document.getElementById("mfoot").innerHTML='<button class="btn btn-se" onclick="closeM()">Cancel</button><button class="btn btn-pr" onclick="updateSession('+id+')">💾 Save</button>';
+  document.getElementById("mov").classList.add("show");
+}
+
+function saveSession(){
+  var t=document.getElementById("m-t");var title=t?t.value.trim():"";
+  if(!title){toast("Enter session title","error");return;}
+  var cid=parseInt(document.getElementById("m-cid")?document.getElementById("m-cid").value:1);
+  var price=parseInt(document.getElementById("m-p")?document.getElementById("m-p").value:0)||0;
+  var ord=parseInt(document.getElementById("m-ord")?document.getElementById("m-ord").value:SESSIONS.length+1)||SESSIONS.length+1;
+  var img=document.getElementById("m-simg-data")?document.getElementById("m-simg-data").value:"";
+  var hwData=document.getElementById("pdf-data-new")?document.getElementById("pdf-data-new").value:"";
+  var hwName=document.getElementById("pdf-name-new")?document.getElementById("pdf-name-new").value:"";
+  var examVal=document.getElementById("m-exam")?document.getElementById("m-exam").value:"";
+  var examId=examVal?parseInt(examVal):null;
+  var videos=collectVideos();
+  SESSIONS.push({id:SESSIONS.length+1,cid:cid,title:title,price:price,order:ord,img:img,hwFile:hwData,hwFileName:hwName,examId:examId,videos:videos});
+  toast("✅ Session added","success");closeM();renderPage();
+}
+
+function updateSession(id){
+  var s=SESSIONS.find(function(x){return x.id===id;});if(!s)return;
+  var t=document.getElementById("m-t");if(t&&t.value.trim())s.title=t.value.trim();
+  var p=document.getElementById("m-p");if(p)s.price=parseInt(p.value)||0;
+  var img=document.getElementById("m-simg-data");if(img&&img.value)s.img=img.value;
+  var hwD=document.getElementById("pdf-data-"+id);if(hwD&&hwD.value)s.hwFile=hwD.value;
+  var hwN=document.getElementById("pdf-name-"+id);if(hwN&&hwN.value)s.hwFileName=hwN.value;
+  var ex=document.getElementById("m-exam");if(ex)s.examId=ex.value?parseInt(ex.value):null;
+  s.videos=collectVideos();
+  toast("✅ Session updated","success");closeM();renderPage();
+}
+
+function delSession(id){
+  if(!confirm("Delete session?"))return;
+  var idx=SESSIONS.findIndex(function(s){return s.id===id;});
+  if(idx>-1)SESSIONS.splice(idx,1);
+  toast("Deleted","success");renderPage();
+}
+
+// ================================================================
+// HOMEWORK (ADMIN)
+// ================================================================
+function renderHomework(){
+  var h='<div class="ph"><div><div class="ph-t">Homework Submissions</div></div></div>';
+  if(HW_SUBMISSIONS.length===0){h+='<div class="es"><div class="es-ic">📄</div><h3>No submissions yet</h3></div>';return h;}
+  HW_SUBMISSIONS.forEach(function(sub){
+    var sess=SESSIONS.find(function(s){return s.id===sub.sessionId;});
+    h+='<div class="hw-card">';
+    h+='<div class="hw-hd"><div><div class="hw-title">'+sub.userName+' — '+(sess?sess.title:"Session "+sub.sessionId)+'</div>';
+    h+='<div class="hw-meta">Submitted: '+sub.submittedAt+'</div></div>';
+    h+=(sub.grade!==null?'<span class="bd bd-gr">'+sub.grade+'/10</span>':'<span class="bd bd-am">⏳ Needs Grading</span>');
+    h+='</div>';
+    h+='<div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;margin-bottom:.65rem">';
+    h+='<span style="font-size:12.5px;color:var(--tx2)">📎 '+sub.fileName+'</span>';
+    if(sub.fileData)h+='<button class="btn btn-cy btn-sm" onclick="downloadData(HW_SUBMISSIONS.find(function(s){return s.id==='+sub.id+';}).fileData,\''+sub.fileName+'\')">📥 Download</button>';
+    h+='</div>';
+    if(sub.grade===null){
+      h+='<div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap">';
+      h+='<input class="grade-input" type="number" min="0" max="10" id="g-'+sub.id+'" placeholder="0-10">';
+      h+='<button class="btn btn-gn btn-sm" onclick="gradeHW('+sub.id+')">✅ Grade</button>';
+      h+='</div>';
+    } else {
+      h+='<div style="display:flex;gap:.5rem;align-items:center">';
+      h+='<span class="bd bd-gr">Grade: '+sub.grade+'/10</span>';
+      h+='<input class="grade-input" type="number" min="0" max="10" id="g-'+sub.id+'" value="'+sub.grade+'">';
+      h+='<button class="btn btn-se btn-sm" onclick="gradeHW('+sub.id+')">Update</button>';
+      h+='</div>';
+    }
+    h+='<div style="margin-top:.6rem;display:flex;gap:.4rem;align-items:center">';
+    h+='<input class="fi" id="fb-'+sub.id+'" placeholder="Feedback..." value="'+(sub.feedback||"")+'" style="font-size:12px;padding:.4rem .75rem">';
+    h+='<button class="btn btn-se btn-sm" onclick="saveFeedback('+sub.id+')">💬</button>';
+    h+='</div></div>';
+  });
+  return h;
+}
+function gradeHW(subId){
+  var sub=HW_SUBMISSIONS.find(function(s){return s.id===subId;});if(!sub)return;
+  var inp=document.getElementById("g-"+subId);
+  var val=parseInt(inp?inp.value:0);
+  if(isNaN(val)||val<0||val>10){toast("Grade must be 0–10","error");return;}
+  sub.grade=val;
+  NOTIFS.unshift({ic:"✅",title:"Homework Graded",sub:sub.userName+"'s homework: "+val+"/10",time:"Now",read:false});
+  updateDot();toast("✅ Graded "+val+"/10","success");renderPage();
+}
+function saveFeedback(subId){
+  var sub=HW_SUBMISSIONS.find(function(s){return s.id===subId;});if(!sub)return;
+  var inp=document.getElementById("fb-"+subId);if(inp)sub.feedback=inp.value.trim();
+  toast("💬 Feedback saved","success");
+}
+
+// ================================================================
+// EXAMS (ADMIN)
+// ================================================================
+function renderExams(){
+  var h='<div class="ph"><div><div class="ph-t">Exams</div></div><button class="btn btn-pr" onclick="openAddExam()">+ Create Exam</button></div>';
+  EXAMS.forEach(function(exam){
+    var sess=SESSIONS.find(function(s){return s.id===exam.sessionId;});
+    var subs=EXAM_SUBMISSIONS.filter(function(s){return s.examId===exam.id;});
+    var totalPts=exam.questions.reduce(function(a,q){return a+q.pts;},0);
+    h+='<div class="hw-card">';
+    h+='<div class="hw-hd"><div><div class="hw-title">'+exam.title+'</div>';
+    h+='<div class="hw-meta">'+(sess?'Linked: '+sess.title:'Not linked')+' • '+exam.questions.length+' Q • '+totalPts+' pts</div></div>';
+    h+='<div style="display:flex;gap:.4rem"><span class="bd bd-pu">'+subs.length+' subs</span>';
+    h+='<button class="btn btn-sm btn-re" onclick="delExam('+exam.id+')">🗑</button></div></div>';
+    if(subs.length>0){
+      h+='<table style="width:100%;border-collapse:collapse;margin-top:.5rem"><thead><tr style="background:#f8fafc"><th style="padding:.45rem .75rem;text-align:left;font-size:10.5px;font-weight:700;color:var(--tx2)">Student</th><th>MCQ</th><th>Essay</th><th>Total</th><th>Action</th></tr></thead><tbody>';
+      subs.forEach(function(sub){
+        var mcq=sub.mcqScore||0;
+        var essayPts=exam.questions.filter(function(q){return q.type==="essay";}).reduce(function(a,q){return a+q.pts;},0);
+        var essayGiven=sub.essayGrades?Object.values(sub.essayGrades).reduce(function(a,v){return a+(v||0);},0):0;
+        var essayDone=essayPts===0||(sub.essayGrades&&!Object.values(sub.essayGrades).some(function(v){return v===null;}));
+        h+='<tr><td style="padding:.45rem .75rem;font-size:12.5px;border-bottom:1px solid var(--bd)">'+sub.userName+'</td>';
+        h+='<td style="padding:.45rem .75rem;font-weight:700;color:var(--pr);border-bottom:1px solid var(--bd)">'+mcq+'</td>';
+        h+='<td style="padding:.45rem .75rem;border-bottom:1px solid var(--bd)">'+(essayPts===0?'<span class="bd bd-gy">N/A</span>':essayDone?'<span class="bd bd-gr">'+essayGiven+'/'+essayPts+'</span>':'<span class="bd bd-am">⏳</span>')+'</td>';
+        h+='<td style="padding:.45rem .75rem;font-weight:900;color:var(--ac);border-bottom:1px solid var(--bd)">'+(essayDone||essayPts===0?mcq+essayGiven:mcq+"+?")+'</td>';
+        h+='<td style="padding:.45rem .75rem;border-bottom:1px solid var(--bd)"><button class="btn btn-sm btn-pu" onclick="openGradeEssay('+exam.id+','+sub.userId+')">📝 Grade</button></td></tr>';
+      });
+      h+='</tbody></table>';
+    }
+    h+='</div>';
+  });
+  return h;
+}
+
+var _examQs=[];var _qCounter=0;
+function openAddExam(){
+  _examQs=[];_qCounter=0;
+  document.getElementById("mtitle").textContent="Create Exam";
+  document.getElementById("mbox").className="mbox mbox-lg";
+  var h='<div class="fg"><label>Exam Title</label><input class="fi" id="m-xt" placeholder="Quiz — Chapter 1"></div>';
+  h+='<div class="fg"><label>Link to Session</label><select class="fi" id="m-xs"><option value="">— Not linked —</option>';
+  SESSIONS.forEach(function(s){h+='<option value="'+s.id+'">'+s.title+'</option>';});
+  h+='</select></div>';
+  h+='<hr style="border:none;border-top:1px solid var(--bd);margin:.75rem 0">';
+  h+='<div id="exam-qs-cont"></div>';
+  h+='<div style="display:flex;gap:.4rem"><button class="btn btn-se btn-sm" onclick="addExamQ(\'mcq\')">+ MCQ</button><button class="btn btn-se btn-sm" onclick="addExamQ(\'essay\')">+ Essay</button></div>';
+  document.getElementById("mbody").innerHTML=h;
+  document.getElementById("mfoot").innerHTML='<button class="btn btn-se" onclick="closeM()">Cancel</button><button class="btn btn-pr" onclick="saveExam()">💾 Save Exam</button>';
+  document.getElementById("mov").classList.add("show");
+}
+function addExamQ(type){
+  _qCounter++;var uid="eq"+_qCounter;_examQs.push({uid:uid,type:type});
+  var cont=document.getElementById("exam-qs-cont");if(!cont)return;
+  var div=document.createElement("div");
+  div.id=uid;div.style.cssText="background:#f8fafc;border:1px solid var(--bd);border-radius:var(--r);padding:.85rem;margin-bottom:.65rem;position:relative";
+  var h='<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem"><span class="bd '+(type==="mcq"?"bd-bl":"bd-pu")+'">'+(type==="mcq"?"Multiple Choice":"Essay")+'</span><button onclick="this.parentElement.parentElement.remove()" style="background:none;border:none;cursor:pointer;color:var(--re);font-size:14px">✕</button></div>';
+  h+='<input class="fi" id="'+uid+'-q" placeholder="Question text..." style="margin-bottom:.5rem">';
+  h+='<div class="two-col"><div class="fg"><label>Points</label><input class="fi" type="number" id="'+uid+'-pts" value="2" min="1"></div>';
+  if(type==="mcq"){
+    h+='<div class="fg"><label>Correct (0-3)</label><input class="fi" type="number" id="'+uid+'-c" value="0" min="0" max="3"></div></div>';
+    for(var i=0;i<4;i++)h+='<input class="fi" id="'+uid+'-o'+i+'" placeholder="Option '+(i+1)+'..." style="margin-bottom:.35rem">';
+  } else {h+='</div>';}
+  div.innerHTML=h;cont.appendChild(div);
+}
+function saveExam(){
+  var title=document.getElementById("m-xt")?document.getElementById("m-xt").value.trim():"";
+  if(!title){toast("Enter exam title","error");return;}
+  var sessId=document.getElementById("m-xs")?parseInt(document.getElementById("m-xs").value)||null:null;
+  var qs=[];
+  document.querySelectorAll("#exam-qs-cont > div").forEach(function(div,i){
+    var qEl=div.querySelector("[id$='-q']");var qText=qEl?qEl.value.trim():"";if(!qText)return;
+    var ptsEl=div.querySelector("[id$='-pts']");var pts=parseInt(ptsEl?ptsEl.value:2)||2;
+    var cEl=div.querySelector("[id$='-c']");
+    if(cEl){
+      var opts=[];
+      for(var j=0;j<4;j++){var o=div.querySelector("[id$='-o"+j+"']");opts.push(o?o.value.trim()||"Option "+(j+1):"Option "+(j+1));}
+      qs.push({id:i+1,type:"mcq",text:qText,options:opts,correct:parseInt(cEl.value)||0,pts:pts});
+    } else {
+      qs.push({id:i+1,type:"essay",text:qText,pts:pts});
+    }
+  });
+  if(qs.length===0){toast("Add at least one question","error");return;}
+  var newId=EXAMS.length+1;
+  EXAMS.push({id:newId,sessionId:sessId,title:title,questions:qs});
+  if(sessId){var sess=SESSIONS.find(function(s){return s.id===sessId;});if(sess)sess.examId=newId;}
+  toast("✅ Exam created","success");closeM();renderPage();
+}
+function delExam(id){
+  if(!confirm("Delete exam?"))return;
+  var idx=EXAMS.findIndex(function(e){return e.id===id;});if(idx>-1)EXAMS.splice(idx,1);
+  SESSIONS.forEach(function(s){if(s.examId===id)s.examId=null;});
+  toast("Deleted","success");renderPage();
+}
+function openGradeEssay(examId,userId){
+  var exam=EXAMS.find(function(e){return e.id===examId;});
+  var sub=EXAM_SUBMISSIONS.find(function(s){return s.examId===examId&&s.userId===userId;});
+  if(!exam||!sub){toast("Not found","error");return;}
+  var essayQs=exam.questions.filter(function(q){return q.type==="essay";});
+  document.getElementById("mtitle").textContent="Grade Essays — "+sub.userName;
+  document.getElementById("mbox").className="mbox mbox-lg";
+  var h='';
+  essayQs.forEach(function(q){
+    var ans=sub.answers[q.id]||"(no answer)";
+    var cur=sub.essayGrades&&sub.essayGrades[q.id]!==undefined?sub.essayGrades[q.id]:"";
+    h+='<div class="exam-q"><div class="exam-q-num">Essay • '+q.pts+' pts</div>';
+    h+='<div class="exam-q-text">'+q.text+'</div>';
+    h+='<div style="background:#f8fafc;border:1px solid var(--bd);border-radius:8px;padding:.75rem;font-size:13px;color:var(--tx2);margin-bottom:.75rem;line-height:1.6">'+ans+'</div>';
+    h+='<div style="display:flex;align-items:center;gap:.65rem"><label style="font-size:12px;font-weight:700">Grade (0–'+q.pts+'):</label>';
+    h+='<input class="grade-input" type="number" min="0" max="'+q.pts+'" id="eg-'+q.id+'" value="'+cur+'"></div></div>';
+  });
+  document.getElementById("mbody").innerHTML=h;
+  document.getElementById("mfoot").innerHTML='<button class="btn btn-se" onclick="closeM()">Cancel</button><button class="btn btn-gn" onclick="saveEssays('+examId+','+userId+')">✅ Save</button>';
+  document.getElementById("mov").classList.add("show");
+}
+function saveEssays(examId,userId){
+  var exam=EXAMS.find(function(e){return e.id===examId;});
+  var sub=EXAM_SUBMISSIONS.find(function(s){return s.examId===examId&&s.userId===userId;});
+  if(!exam||!sub)return;
+  if(!sub.essayGrades)sub.essayGrades={};
+  exam.questions.filter(function(q){return q.type==="essay";}).forEach(function(q){
+    var inp=document.getElementById("eg-"+q.id);
+    if(inp){var v=parseInt(inp.value);if(!isNaN(v)&&v>=0&&v<=q.pts)sub.essayGrades[q.id]=v;}
+  });
+  toast("✅ Essay grades saved","success");updateDot();closeM();renderPage();
+}
+
+// ================================================================
+// PAYMENTS (ADMIN)
+// ================================================================
+function renderRequests(){
+  var h='<div class="ph"><div><div class="ph-t">Payment Requests</div><div class="ph-s">Vodafone Cash: '+CFG.vfNum+'</div></div></div>';
+  h+='<div style="background:var(--ac-l);border:1.5px solid #6ee7b7;border-radius:var(--r2);padding:1rem 1.25rem;margin-bottom:1.25rem">';
+  h+='<div style="font-size:13px;font-weight:700;color:var(--ac);margin-bottom:.35rem">📱 Your Vodafone Cash Number</div>';
+  h+='<div class="vf-num">'+CFG.vfNum+'</div>';
+  h+='<div style="font-size:12px;color:#065f46;margin-top:.4rem">Verify payment then ✅ Approve to unlock the session.</div></div>';
+  var pend=REQUESTS.filter(function(r){return r.status==="pending";});
+  var done=REQUESTS.filter(function(r){return r.status!=="pending";});
+  if(REQUESTS.length===0){h+='<div class="es"><div class="es-ic">✅</div><h3>No requests yet</h3></div>';return h;}
+  if(pend.length>0){h+='<div style="font-size:13px;font-weight:700;color:var(--or);margin-bottom:.6rem">⏳ Pending ('+pend.length+')</div>';pend.forEach(function(r){h+=reqCard(r);});}
+  if(done.length>0){h+='<div style="font-size:13px;font-weight:700;color:var(--tx2);margin:.9rem 0 .6rem">📋 Processed</div>';done.forEach(function(r){h+=reqCard(r);});}
+  return h;
+}
+function reqCard(r){
+  var h='<div class="hw-card" style="display:flex;align-items:flex-start;gap:1rem;flex-wrap:wrap">';
+  h+='<div style="font-size:26px;flex-shrink:0">💰</div>';
+  h+='<div style="flex:1;min-width:180px">';
+  h+='<div style="font-size:13.5px;font-weight:700">'+r.userName+'</div>';
+  h+='<div style="font-size:12px;color:var(--pr);font-weight:600;margin-top:2px">📱 '+r.phone+'</div>';
+  h+='<div class="pill pill-bl" style="margin-top:.3rem">'+r.sessionName+' • '+r.grade+'</div>';
+  h+='<div style="margin-top:.4rem"><span style="font-size:16px;font-weight:900;color:var(--or)">'+r.amount+' EGP</span></div>';
+  h+='<div style="font-size:10.5px;color:var(--tx3);margin-top:.25rem">🕐 '+r.date+'</div></div>';
+  h+='<div style="display:flex;gap:.35rem;flex-shrink:0">';
+  if(r.status==="pending"){
+    h+='<button class="btn btn-gn btn-sm" onclick="approveReq('+r.id+')">✅ Approve</button>';
+    h+='<button class="btn btn-re btn-sm" onclick="rejectReq('+r.id+')">❌ Reject</button>';
+  } else {
+    h+='<span class="bd '+(r.status==="approved"?"bd-gr":"bd-re")+'">'+(r.status==="approved"?"✅ Approved":"❌ Rejected")+'</span>';
+  }
+  h+='</div></div>';
+  return h;
+}
+function approveReq(id){
+  var r=REQUESTS.find(function(x){return x.id===id;});if(!r)return;
+  r.status="approved";S.unlockedSessions[r.sessionId]=true;delete S.pendingSessions[r.sessionId];
+  NOTIFS.unshift({ic:"✅",title:"Session Unlocked",sub:"'"+r.sessionName+"' unlocked for "+r.userName,time:"Now",read:false});
+  toast("✅ Session unlocked for "+r.userName,"success");updateDot();renderSidebar();renderPage();
+}
+function rejectReq(id){
+  var r=REQUESTS.find(function(x){return x.id===id;});if(!r)return;
+  r.status="rejected";delete S.pendingSessions[r.sessionId];
+  NOTIFS.unshift({ic:"❌",title:"Request Rejected",sub:r.userName+" — "+r.sessionName,time:"Now",read:false});
+  toast("Rejected","error");updateDot();renderSidebar();renderPage();
+}
+
+// ================================================================
+// STUDENTS (ADMIN)
+// ================================================================
+function renderStudents(){
+  var students=USERS.filter(function(u){return u.role==="student";});
+  var h='<div class="ph"><div><div class="ph-t">Students</div><div class="ph-s">'+students.length+' registered</div></div><button class="btn btn-pr" onclick="openAddUser()">+ Add</button></div>';
+  h+='<div class="tc"><table><thead><tr><th>Student</th><th>Email</th><th>WhatsApp</th><th>Joined</th><th>Status</th><th>Actions</th></tr></thead><tbody>';
+  students.forEach(function(u){
+    h+='<tr><td><div class="tdu"><div class="tdav">'+u.av+'</div><div style="font-weight:600">'+u.name+'</div></div></td>';
+    h+='<td style="color:var(--tx2);font-size:11.5px">'+u.email+'</td>';
+    h+='<td style="font-size:12px;color:var(--pr);font-weight:600">'+(u.phone||"—")+'</td>';
+    h+='<td style="font-size:11.5px;color:var(--tx3)">'+u.joined+'</td>';
+    h+='<td><span class="bd '+(u.active?"bd-gr":"bd-re")+'">'+(u.active?"Active":"Suspended")+'</span></td>';
+    h+='<td><div style="display:flex;gap:.3rem"><button class="btn btn-sm btn-pr" onclick="openGrantSession('+u.id+')">🎁 Grant</button><button class="btn btn-sm '+(u.active?"btn-re":"btn-gn")+'" onclick="toggleUser('+u.id+')">'+(u.active?"Suspend":"Activate")+'</button></div></td></tr>';
+  });
+  h+='</tbody></table></div>';
+  return h;
+}
+function openGrantSession(userId){
+  var u=USERS.find(function(x){return x.id===userId;});
+  document.getElementById("mtitle").textContent="Grant Session — "+u.name;
+  document.getElementById("mbox").className="mbox";
+  var h='<div class="fg"><label>Course</label><select class="fi" id="m-gcid" onchange="updateSessSelect()"><option value="">Select...</option>';
+  COURSES.forEach(function(c){h+='<option value="'+c.id+'">'+c.title+'</option>';});
+  h+='</select></div><div class="fg"><label>Session</label><select class="fi" id="m-gsid"><option>Select course first</option></select></div>';
+  document.getElementById("mbody").innerHTML=h;
+  document.getElementById("mfoot").innerHTML='<button class="btn btn-se" onclick="closeM()">Cancel</button><button class="btn btn-gn" onclick="grantSession('+userId+')">🎁 Grant Free</button>';
+  document.getElementById("mov").classList.add("show");
+}
+function updateSessSelect(){
+  var cid=parseInt(document.getElementById("m-gcid").value);
+  var sel=document.getElementById("m-gsid");if(!sel)return;
+  sel.innerHTML="";
+  SESSIONS.filter(function(s){return s.cid===cid;}).forEach(function(s){
+    var o=document.createElement("option");o.value=s.id;o.textContent=s.title+" ("+(s.price===0?"Free":s.price+" EGP")+")";sel.appendChild(o);
+  });
+}
+function grantSession(userId){
+  var sid=parseInt(document.getElementById("m-gsid")?document.getElementById("m-gsid").value:0);
+  if(!sid){toast("Select a session","error");return;}
+  var u=USERS.find(function(x){return x.id===userId;});
+  var s=SESSIONS.find(function(x){return x.id===sid;});
+  if(CU&&CU.id===userId){S.unlockedSessions[sid]=true;delete S.pendingSessions[sid];}
+  NOTIFS.unshift({ic:"🎁",title:"Session Granted",sub:u.name+" got '"+s.title+"' free",time:"Now",read:false});
+  updateDot();toast("✅ Granted to "+u.name,"success");closeM();renderPage();
+}
+function openAddUser(){
+  document.getElementById("mtitle").textContent="Add Student";
+  document.getElementById("mbox").className="mbox";
+  var h='<div class="fg"><label>Name</label><input class="fi" id="m-un" placeholder="Mohamed Ahmed"></div>';
+  h+='<div class="fg"><label>Email</label><input class="fi" id="m-ue" type="email"></div>';
+  h+='<div class="fg"><label>WhatsApp</label><input class="fi" id="m-uph" placeholder="010xxxxxxxx"></div>';
+  h+='<div class="fg"><label>Password</label><input class="fi" id="m-up" type="password"></div>';
+  document.getElementById("mbody").innerHTML=h;
+  document.getElementById("mfoot").innerHTML='<button class="btn btn-se" onclick="closeM()">Cancel</button><button class="btn btn-pr" onclick="saveUser()">➕ Add</button>';
+  document.getElementById("mov").classList.add("show");
+}
+function saveUser(){
+  var nm=document.getElementById("m-un")?document.getElementById("m-un").value.trim():"";
+  var em=document.getElementById("m-ue")?document.getElementById("m-ue").value.trim():"";
+  var ph=document.getElementById("m-uph")?document.getElementById("m-uph").value.trim():"";
+  var pw=document.getElementById("m-up")?document.getElementById("m-up").value:"";
+  if(!nm||!em||!pw){toast("Fill all fields","error");return;}
+  USERS.push({id:USERS.length+1,name:nm,email:em,pass:pw,role:"student",av:nm.charAt(0),active:true,joined:new Date().toISOString().slice(0,10),phone:ph});
+  toast("✅ Student added","success");closeM();renderPage();
+}
+function toggleUser(id){
+  var u=USERS.find(function(x){return x.id===id;});
+  if(u){u.active=!u.active;toast((u.active?"Activated":"Suspended"),"success");renderPage();}
+}
+
+// ================================================================
+// NOTIFICATIONS
+// ================================================================
+function renderNotifs(){
+  NOTIFS.forEach(function(n){n.read=true;});updateDot();
+  var h='<div class="ph"><div><div class="ph-t">Notifications</div></div></div>';
+  if(NOTIFS.length===0){h+='<div class="es"><div class="es-ic">🔔</div><h3>No notifications</h3></div>';return h;}
+  NOTIFS.forEach(function(n){
+    h+='<div style="background:var(--card);border:1px solid var(--bd);border-radius:var(--r2);padding:.85rem 1rem;margin-bottom:.6rem;display:flex;align-items:flex-start;gap:.75rem;box-shadow:var(--sh)">';
+    h+='<div style="font-size:20px;flex-shrink:0">'+n.ic+'</div>';
+    h+='<div><div style="font-size:13px;font-weight:700">'+n.title+'</div>';
+    h+='<div style="font-size:12px;color:var(--tx2);margin-top:1px">'+n.sub+'</div>';
+    h+='<div style="font-size:10.5px;color:var(--tx3);margin-top:.25rem">'+n.time+'</div></div></div>';
+  });
+  return h;
+}
+
+// ================================================================
+// SETTINGS
+// ================================================================
+function renderSettings(){
+  var h='<div class="ph"><div><div class="ph-t">Settings</div></div><button class="btn btn-gn" onclick="saveSettings()">💾 Save All</button></div>';
+  h+='<div class="settings-sec"><h3>🏷️ Platform Identity</h3>';
+  h+='<div style="display:flex;align-items:center;gap:1.25rem;margin-bottom:1rem;flex-wrap:wrap">';
+  h+='<div><div style="font-size:11px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem">Logo</div>';
+  h+='<label>';
+  h+='<div class="logo-prev" id="logo-prev">';
+  if(CFG.logo)h+='<img src="'+CFG.logo+'">';else h+=CFG.logoEmoji;
+  h+='</div>';
+  h+='<input type="file" accept="image/*" style="display:none" onchange="uploadLogo(this)">';
+  h+='</label>';
+  h+='<button class="btn btn-sm btn-se" style="margin-top:.4rem;width:80px" onclick="clearLogo()">Clear</button></div>';
+  h+='<div style="flex:1;min-width:200px">';
+  h+='<div class="two-col"><div class="fg"><label>Platform Name</label><input class="fi" id="cfg-name" value="'+CFG.name+'"></div>';
+  h+='<div class="fg"><label>Emoji (if no logo)</label><input class="fi" id="cfg-emoji" value="'+CFG.logoEmoji+'" maxlength="4"></div></div>';
+  h+='<div class="fg"><label>Tagline</label><input class="fi" id="cfg-sub" value="'+CFG.sub+'"></div>';
+  h+='</div></div></div>';
+  h+='<div class="settings-sec"><h3>🎨 Primary Color</h3>';
+  var presets=["#2563eb","#dc2626","#059669","#d97706","#7c3aed","#0891b2","#0f172a","#be123c"];
+  h+='<div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.75rem">';
+  presets.forEach(function(c){h+='<div class="cs'+(CFG.primaryColor===c?" on":"")+'" style="background:'+c+'" onclick="previewColor(\''+c+'\')"></div>';});
+  h+='</div>';
+  h+='<div class="fg" style="max-width:220px"><label>Custom Color</label><div style="display:flex;gap:.5rem;align-items:center"><input class="fi" id="cfg-color" value="'+CFG.primaryColor+'"><input type="color" id="cfg-cpick" value="'+CFG.primaryColor+'" oninput="previewColor(this.value)" style="width:38px;height:38px;border:none;border-radius:7px;cursor:pointer;padding:2px"></div></div></div>';
+  h+='<div class="settings-sec"><h3>📱 Vodafone Cash Number</h3>';
+  h+='<div class="fg" style="max-width:280px"><label>Your VF Cash Number</label><input class="fi" id="cfg-vf" value="'+CFG.vfNum+'" style="font-family:\'JetBrains Mono\',monospace;font-size:16px;font-weight:700;letter-spacing:2px"></div></div>';
+  return h;
+}
+function previewColor(c){
+  document.documentElement.style.setProperty("--pr",c);
+  var i=document.getElementById("cfg-color");if(i)i.value=c;
+  var p=document.getElementById("cfg-cpick");if(p)p.value=c;
+  document.querySelectorAll(".cs").forEach(function(el){el.classList.toggle("on",el.style.background===c);});
+}
+function uploadLogo(input){
+  readFile(input,3,function(data){
+    CFG.logo=data;
+    var p=document.getElementById("logo-prev");if(p)p.innerHTML='<img src="'+data+'">';
+    applyConfig();toast("✅ Logo updated","success");
+  });
+}
+function clearLogo(){
+  CFG.logo="";applyConfig();
+  var p=document.getElementById("logo-prev");if(p)p.textContent=CFG.logoEmoji;
+  toast("Logo cleared","success");
+}
+function saveSettings(){
+  var n=document.getElementById("cfg-name");if(n)CFG.name=n.value.trim()||CFG.name;
+  var s=document.getElementById("cfg-sub");if(s)CFG.sub=s.value.trim();
+  var e=document.getElementById("cfg-emoji");if(e)CFG.logoEmoji=e.value.trim()||"⚗️";
+  var c=document.getElementById("cfg-color");if(c&&c.value)CFG.primaryColor=c.value;
+  var v=document.getElementById("cfg-vf");if(v)CFG.vfNum=v.value.trim();
+  applyConfig();toast("✅ Settings saved","success");renderPage();
+}
+
+// ================================================================
+// STUDENT PAGES
+// ================================================================
+function renderAllCourses(){
+  var h='<div class="ph"><div><div class="ph-t">Courses</div><div class="ph-s">Free enrollment</div></div></div>';
+  h+=gradeTabs();
+  h+='<div class="cg">';
+  COURSES.filter(function(c){return c.pub&&(S.gradeFilter==="all"||c.gradeId===S.gradeFilter);}).forEach(function(c){h+=courseCard(c,false);});
+  h+='</div>';
+  return h;
+}
+function renderMySessions(){
+  var myIds=Object.keys(S.unlockedSessions).map(Number);
+  var mySessions=SESSIONS.filter(function(s){return myIds.indexOf(s.id)>-1;});
+  var h='<div class="ph"><div><div class="ph-t">My Sessions</div><div class="ph-s">'+mySessions.length+' unlocked</div></div></div>';
+  if(mySessions.length===0){h+='<div class="es"><div class="es-ic">🎬</div><h3>No sessions unlocked yet</h3><p>Enroll in a course and buy sessions</p><button class="btn btn-pr" onclick="navTo(\'allcourses\')" style="margin-top:1rem">Browse Courses</button></div>';return h;}
+  mySessions.forEach(function(s){
+    var c=COURSES.find(function(cc){return cc.id===s.cid;});
+    var bg=c?gradeColor(c.gradeId):"var(--grad)";
+    var vCnt=s.videos?s.videos.length:0;
+    h+='<div style="background:var(--card);border:1px solid var(--bd);border-radius:var(--r2);padding:.95rem;margin-bottom:.65rem;display:flex;align-items:center;gap:.9rem;flex-wrap:wrap;box-shadow:var(--sh);cursor:pointer" onclick="openCourseSession('+s.cid+','+s.id+')">';
+    h+='<div class="ls-thumb" style="width:52px;height:52px;border-radius:10px;background:'+bg+';">';
+    if(s.img)h+='<img src="'+s.img+'">';
+    else h+=(c?gradeEm(c.gradeId):"🔬");
+    h+='</div>';
+    h+='<div style="flex:1;min-width:140px"><div style="font-size:13px;font-weight:700">'+s.title+'</div>';
+    h+='<div style="font-size:11.5px;color:var(--tx3);margin-top:2px">'+(c?c.title:"")+" • ▶️ "+vCnt+" videos"+'</div></div>';
+    h+='<span class="bd bd-gr">✅ Unlocked</span>';
+    h+='<button class="btn btn-pr btn-sm" onclick="event.stopPropagation();openCourseSession('+s.cid+','+s.id+')">▶ Watch</button></div>';
+  });
+  return h;
+}
+function renderMyHomework(){
+  var myIds=Object.keys(S.unlockedSessions).map(Number);
+  var freeSessions=SESSIONS.filter(function(s){return s.price===0;}).map(function(s){return s.id;});
+  var allIds=myIds.concat(freeSessions.filter(function(id){return myIds.indexOf(id)===-1;}));
+  var sessWithHW=SESSIONS.filter(function(s){return s.hwFile&&(allIds.indexOf(s.id)>-1||isEnrolled(s.cid));});
+  var h='<div class="ph"><div><div class="ph-t">My Homework</div></div></div>';
+  if(sessWithHW.length===0){h+='<div class="es"><div class="es-ic">📄</div><h3>No homework yet</h3><p>Homework appears when you unlock sessions with homework</p></div>';return h;}
+  sessWithHW.forEach(function(s){
+    var sub=HW_SUBMISSIONS.find(function(x){return x.sessionId===s.id&&x.userId===CU.id;});
+    var c=COURSES.find(function(cc){return cc.id===s.cid;});
+    h+='<div class="hw-card">';
+    h+='<div class="hw-hd"><div><div class="hw-title">'+s.title+'</div><div class="hw-meta">'+(c?c.title:"")+'</div></div>';
+    h+=(sub?(sub.grade!==null?'<span class="bd bd-gr">'+sub.grade+'/10</span>':'<span class="bd bd-am">⏳ Awaiting Grade</span>'):'<span class="bd bd-gy">Not Submitted</span>');
+    h+='</div>';
+    h+='<div style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin-top:.6rem">';
+    h+='<button class="btn btn-cy btn-sm" onclick="downloadData(SESSIONS.find(function(x){return x.id==='+s.id+';}).hwFile,SESSIONS.find(function(x){return x.id==='+s.id+';}).hwFileName||\'homework.pdf\')">📥 Download Homework</button>';
+    h+='<label class="btn btn-gn btn-sm" style="cursor:pointer">📤 '+(sub?"Re-submit":"Submit Solution")+'<input type="file" accept=".pdf" style="display:none" onchange="submitHW('+s.id+',this)"></label>';
+    h+='</div>';
+    if(sub&&sub.feedback){h+='<div style="background:var(--pr-l);border-radius:7px;padding:.6rem .8rem;font-size:12px;color:var(--pr);margin-top:.6rem">💬 Teacher: '+sub.feedback+'</div>';}
+    h+='</div>';
+  });
+  return h;
+}
+function submitHW(sessionId,input){
+  readFile(input,10,function(data,name){
+    var existing=HW_SUBMISSIONS.find(function(s){return s.sessionId===sessionId&&s.userId===CU.id;});
+    var now=new Date().toLocaleString();
+    var sess=SESSIONS.find(function(s){return s.id===sessionId;});
+    if(existing){existing.fileName=name;existing.fileData=data;existing.submittedAt=now;existing.grade=null;existing.feedback="";}
+    else{HW_SUBMISSIONS.push({id:HW_SUBMISSIONS.length+1,sessionId:sessionId,userId:CU.id,userName:CU.name,fileName:name,fileData:data,submittedAt:now,grade:null,feedback:""});}
+    NOTIFS.unshift({ic:"📄",title:"Homework Submitted",sub:CU.name+" submitted: "+name+(sess?" for "+sess.title:""),time:"Now",read:false});
+    updateDot();toast("✅ Homework submitted!","success");renderPage();
+  });
+}
+function renderMyExams(){
+  var myIds=Object.keys(S.unlockedSessions).map(Number);
+  var freeSessions=SESSIONS.filter(function(s){return s.price===0;}).map(function(s){return s.id;});
+  var allIds=myIds.concat(freeSessions.filter(function(id){return myIds.indexOf(id)===-1;}));
+  var sessWithExam=SESSIONS.filter(function(s){return s.examId&&(allIds.indexOf(s.id)>-1||isEnrolled(s.cid));});
+  var h='<div class="ph"><div><div class="ph-t">My Exams</div></div></div>';
+  if(sessWithExam.length===0){h+='<div class="es"><div class="es-ic">📝</div><h3>No exams yet</h3></div>';return h;}
+  sessWithExam.forEach(function(s){
+    var exam=EXAMS.find(function(e){return e.id===s.examId;});if(!exam)return;
+    var sub=EXAM_SUBMISSIONS.find(function(x){return x.examId===exam.id&&x.userId===CU.id;});
+    var totalPts=exam.questions.reduce(function(a,q){return a+q.pts;},0);
+    h+='<div class="hw-card"><div class="hw-hd">';
+    h+='<div><div class="hw-title">'+exam.title+'</div><div class="hw-meta">'+s.title+' • '+exam.questions.length+' Q • '+totalPts+' pts</div></div>';
+    if(sub){
+      var mcq=sub.mcqScore||0;
+      var ep=exam.questions.filter(function(q){return q.type==="essay";}).reduce(function(a,q){return a+q.pts;},0);
+      var eg=sub.essayGrades?Object.values(sub.essayGrades).reduce(function(a,v){return a+(v||0);},0):0;
+      var ed=ep===0||(sub.essayGrades&&!Object.values(sub.essayGrades).some(function(v){return v===null;}));
+      h+=(ed?'<span class="bd bd-gr">'+(mcq+eg)+'/'+totalPts+'</span>':'<span class="bd bd-am">⏳ Partial</span>');
+    } else {h+='<span class="bd bd-gy">Not taken</span>';}
+    h+='</div>';
+    h+='<div style="margin-top:.6rem">';
+    if(!sub)h+='<button class="btn btn-pr btn-sm" onclick="startExam('+exam.id+')">📝 Take Exam</button>';
+    else h+='<button class="btn btn-se btn-sm" onclick="viewExamResult('+exam.id+')">👁 Results</button>';
+    h+='</div></div>';
+  });
+  return h;
+}
+function renderMyReqs(){
+  var myR=REQUESTS.filter(function(r){return r.userId===CU.id;});
+  var h='<div class="ph"><div><div class="ph-t">My Requests</div></div></div>';
+  if(myR.length===0){h+='<div class="es"><div class="es-ic">📋</div><h3>No requests yet</h3></div>';return h;}
+  myR.forEach(function(r){
+    h+='<div style="background:var(--card);border:1px solid var(--bd);border-radius:var(--r2);padding:1rem;margin-bottom:.75rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;box-shadow:var(--sh)">';
+    h+='<div><div style="font-size:13.5px;font-weight:700">'+r.sessionName+'</div>';
+    h+='<div style="font-size:12px;color:var(--tx2);margin-top:2px">'+r.grade+' • 🕐 '+r.date+'</div>';
+    h+='<div style="font-size:16px;font-weight:900;color:var(--or);margin-top:.3rem">'+r.amount+' EGP</div></div>';
+    h+='<span class="bd '+(r.status==="approved"?"bd-gr":r.status==="rejected"?"bd-re":"bd-am")+'">'+(r.status==="approved"?"✅ Unlocked":r.status==="rejected"?"❌ Rejected":"⏳ Pending")+'</span>';
+    h+='</div>';
+  });
+  return h;
+}
+
+// ================================================================
+// COURSE DETAIL + MULTI-VIDEO PLAYER
+// ================================================================
+function openCourse(id){S.activeCourse=id;S.activeSession=0;S.activeVideo=0;renderSidebar();renderPage();}
+function openCourseSession(cid,sid){
+  S.activeCourse=cid;
+  var idx=SESSIONS.filter(function(s){return s.cid===cid;}).findIndex(function(s){return s.id===sid;});
+  S.activeSession=idx>-1?idx:0;S.activeVideo=0;
+  renderSidebar();renderPage();
+}
+
+function renderDetail(){
+  var c=COURSES.find(function(cc){return cc.id===S.activeCourse;});if(!c)return "";
+  var isAdmin=CU.role==="admin";
+  var enrolled=isEnrolled(c.id)||isAdmin;
+  var sessions=SESSIONS.filter(function(s){return s.cid===c.id;}).sort(function(a,b){return a.order-b.order;});
+  var as=sessions[S.activeSession]||sessions[0];
+  var watchable=as&&canWatch(as.id);
+  var currentVideo=as&&as.videos&&as.videos[S.activeVideo]?as.videos[S.activeVideo]:(as&&as.videos&&as.videos[0]?as.videos[0]:null);
+
+  var h='<div class="bk" onclick="S.activeCourse=null;renderSidebar();renderPage()">← Back</div>';
+  if(!isAdmin&&!enrolled){
+    h+='<div style="background:var(--ac-l);border:1.5px solid #6ee7b7;border-radius:var(--r2);padding:1rem 1.25rem;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem">';
+    h+='<div><div style="font-size:14px;font-weight:700;color:var(--ac)">✅ Free Enrollment</div>';
+    h+='<div style="font-size:12.5px;color:#065f46;margin-top:.2rem">Join free — then buy individual sessions.</div></div>';
+    h+='<button class="btn btn-gn" onclick="enrollCourse('+c.id+')">✅ Enroll Free</button></div>';
+  }
+  if(enrolled&&!isAdmin)h+='<div class="pay-notice">💰 Pay Per Session — buy any session via Vodafone Cash</div>';
+
+  h+='<div class="dl">';
+  h+='<div>';
+
+  // VIDEO TABS (if multiple videos in session)
+  if(as&&as.videos&&as.videos.length>1&&watchable){
+    h+='<div class="vtabs">';
+    as.videos.forEach(function(v,vi){
+      h+='<button class="vtab'+(vi===S.activeVideo?" on":"")+'" onclick="setVideo('+vi+')">▶ '+v.title+'</button>';
+    });
+    h+='</div>';
+  }
+
+  // VIDEO PLAYER
+  h+=buildPlayer(currentVideo,watchable,c.id,enrolled,as);
+
+  // Homework & Exam actions
+  if(as&&(enrolled||isAdmin)){
+    var actBtns=[];
+    if(as.hwFile){
+      actBtns.push('<button class="btn btn-cy btn-sm" onclick="downloadData(SESSIONS.find(function(x){return x.id==='+as.id+';}).hwFile,SESSIONS.find(function(x){return x.id==='+as.id+';}).hwFileName||\'homework.pdf\')">📄 Download Homework</button>');
+      if(!isAdmin){
+        var hwSub=HW_SUBMISSIONS.find(function(x){return x.sessionId===as.id&&x.userId===CU.id;});
+        actBtns.push('<label class="btn btn-gn btn-sm" style="cursor:pointer">📤 '+(hwSub?"Re-submit":"Submit")+'<input type="file" accept=".pdf" style="display:none" onchange="submitHW('+as.id+',this)"></label>');
+        if(hwSub&&hwSub.grade!==null)actBtns.push('<span class="pill pill-gn">Grade: '+hwSub.grade+'/10</span>');
+      }
+    }
+    if(as.examId&&!isAdmin){
+      var examSub=EXAM_SUBMISSIONS.find(function(x){return x.examId===as.examId&&x.userId===CU.id;});
+      actBtns.push(examSub?'<button class="btn btn-pu btn-sm" onclick="viewExamResult('+as.examId+')">📝 Results</button>':'<button class="btn btn-pu btn-sm" onclick="startExam('+as.examId+')">📝 Take Exam</button>');
+    }
+    if(actBtns.length>0)h+='<div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.85rem">'+actBtns.join("")+'</div>';
+  }
+
+  h+='<div class="dic"><h2>'+c.title+'</h2><p>'+c.desc+'</p>';
+  var totalVideos=sessions.reduce(function(a,s){return a+(s.videos?s.videos.length:0);},0);
+  h+='<div class="tags"><span class="tag">'+gradeName(c.gradeId)+'</span><span class="tag">🎬 '+sessions.length+' sessions</span><span class="tag">▶️ '+totalVideos+' videos</span><span class="tag">🆓 '+sessions.filter(function(s){return s.price===0;}).length+' free</span></div>';
+  if(enrolled&&!isAdmin)h+='<div class="enroll-ok">✅ Enrolled — buy any session individually</div>';
+  h+='</div></div>';
+
+  // SESSION LIST
+  h+='<div><div class="sl-wrap"><div class="sl-hd"><h3>Sessions</h3></div>';
+  sessions.forEach(function(s,i){
+    var active=i===S.activeSession;
+    var free=s.price===0;
+    var unlocked=isUnlocked(s.id);
+    var pend=isPending(s.id);
+    var accessible=isAdmin||free||unlocked;
+    var canBuy=enrolled&&!isAdmin&&!free&&!unlocked&&!pend;
+    var vCount=s.videos?s.videos.length:0;
+    h+='<div class="sl-item'+(active?" active-s":"")+'">';
+    h+='<div class="sl-item-hd" onclick="setSession('+i+','+accessible+')">';
+    h+='<div class="snum">'+(i+1)+'</div>';
+    // Session thumbnail
+    h+='<div class="sl-thumb">';
+    if(s.img)h+='<img src="'+s.img+'">';
+    else h+=gradeEm(c.gradeId);
+    h+='</div>';
+    h+='<div class="sinfo"><div class="sname">'+s.title+'</div>';
+    h+='<div class="sdur">▶️ '+vCount+' video'+(vCount!==1?"s":"")+(s.hwFile?" • 📄":"")+(s.examId?" • 📝":"")+'</div></div>';
+    h+='<div class="s-actions">';
+    if(free)h+='<span class="pill pill-gn">Free</span>';
+    else if(unlocked)h+='<span class="pill pill-gn">✅</span>';
+    else if(pend)h+='<span class="pill pill-or">⏳</span>';
+    else h+='<span class="pill pill-or">'+s.price+' EGP</span>';
+    if(canBuy)h+='<button class="s-buy" onclick="event.stopPropagation();openPaySession('+s.id+','+c.id+')">Buy</button>';
+    if(!enrolled&&!free&&!isAdmin)h+='<button class="s-buy" style="background:var(--ac)" onclick="event.stopPropagation();enrollCourse('+c.id+')">Enroll</button>';
+    h+='<span style="font-size:12px;margin-left:.1rem">'+(active?"▶️":free||unlocked?"🔓":"🔒")+'</span>';
+    h+='</div></div>';
+    // Show video list when session is active and accessible
+    if(active&&accessible&&vCount>1){
+      h+='<div class="sl-videos">';
+      s.videos.forEach(function(v,vi){
+        h+='<div class="sv-item'+(vi===S.activeVideo?" active-v":"")+'" onclick="setVideo('+vi+')">';
+        h+='<div class="sv-num">'+(vi+1)+'</div>';
+        h+='<div class="sv-info"><div class="sv-title">'+v.title+'</div>';
+        h+='<div class="sv-dur">⏱ '+v.dur+'</div></div>';
+        h+='<span style="font-size:12px">'+(vi===S.activeVideo?"▶️":"▷")+'</span>';
+        h+='</div>';
+      });
+      h+='</div>';
+    }
+    h+='</div>';
+  });
+  h+='</div></div></div>';
+  return h;
+}
+
+function buildPlayer(video,watchable,cid,enrolled,session){
+  var h='<div class="vwrap" oncontextmenu="return false;">';
+  if(watchable&&video&&video.ytId){
+    h+='<iframe src="https://www.youtube-nocookie.com/embed/'+video.ytId+'?autoplay=0&controls=0&disablekb=1&fs=0&iv_load_policy=3&modestbranding=1&rel=0&showinfo=0" allow="autoplay;encrypted-media" allowfullscreen="false" referrerpolicy="no-referrer" sandbox="allow-scripts allow-same-origin allow-presentation" style="pointer-events:none;width:100%;aspect-ratio:16/9;display:block;border:none"></iframe>';
+    h+='<div class="vshield" oncontextmenu="return false;" ondragstart="return false;"></div>';
+    h+='<div class="vcontrols"><button class="vcbtn" onclick="toast(\'▶️ Playing...\',\'success\')">▶️</button><div class="vtb"><div class="vtbf"></div></div><span class="vctime">'+(video.dur||"—")+'</span></div>';
+  } else {
+    h+='<div class="vshield locked">';
+    h+='<div class="vlock-icon">🔒</div>';
+    if(!enrolled){
+      h+='<div class="vlock-txt">Enroll first — it\'s free!</div>';
+      h+='<button class="btn btn-gn" style="margin-top:.75rem" onclick="enrollCourse('+cid+')">✅ Enroll Free</button>';
+    } else {
+      var price=session?session.price:0;
+      h+='<div class="vlock-txt">'+price+' EGP to unlock this session</div>';
+      h+='<div class="vlock-sub">Pay via Vodafone Cash → Submit Request → Unlock after approval</div>';
+      if(session)h+='<button class="btn btn-or" style="margin-top:.75rem" onclick="openPaySession('+session.id+','+cid+')">💰 Buy — '+price+' EGP</button>';
+    }
+    h+='</div>';
+  }
+  return h+'</div>';
+}
+
+document.addEventListener("contextmenu",function(e){if(e.target.closest&&e.target.closest(".vwrap"))e.preventDefault();});
+
+function setSession(i,accessible){
+  if(!accessible){toast("🔒 Buy this session to watch","warn");return;}
+  S.activeSession=i;S.activeVideo=0;renderPage();
+}
+function setVideo(vi){
+  S.activeVideo=vi;renderPage();
+}
+
+// ================================================================
+// PAY PER SESSION
+// ================================================================
+function openPaySession(sessionId,courseId){
+  var s=SESSIONS.find(function(x){return x.id===sessionId;});
+  var c=COURSES.find(function(x){return x.id===courseId;});
+  if(!s||!c)return;
+  if(isUnlocked(s.id)){toast("Already unlocked","error");return;}
+  if(isPending(s.id)){toast("Request already submitted","warn");return;}
+  if(!isEnrolled(c.id))enrollCourse(courseId);
+  document.getElementById("mtitle").textContent="Buy Session";
+  document.getElementById("mbox").className="mbox";
+  var vCount=s.videos?s.videos.length:0;
+  var h='<div style="text-align:center;padding:1rem;background:var(--pr-l);border-radius:var(--r);margin-bottom:1.25rem">';
+  h+='<div style="font-size:30px;margin-bottom:.4rem">'+gradeEm(c.gradeId)+'</div>';
+  h+='<div style="font-size:14.5px;font-weight:800;color:var(--pr)">'+s.title+'</div>';
+  h+='<div style="font-size:11.5px;color:var(--tx2);margin-top:.2rem">'+c.title+' • ▶️ '+vCount+' video'+(vCount!==1?"s":"")+'</div>';
+  h+='<div style="font-size:30px;font-weight:900;color:var(--or);margin:.6rem 0">'+s.price+' EGP</div>';
+  h+='<div style="font-size:11.5px;color:var(--tx2)">One-time payment — access all '+vCount+' video'+(vCount!==1?"s":"")+'</div>';
+  h+='</div>';
+  h+='<div class="vf-box"><h4>📱 Pay via Vodafone Cash</h4><div class="vf-steps">';
+  h+='1️⃣ Open Vodafone Cash app<br>';
+  h+='2️⃣ Send <strong>'+s.price+' EGP</strong> to:<br>';
+  h+='<div class="vf-num">'+CFG.vfNum+'</div>';
+  h+='3️⃣ Write your name in the note<br>';
+  h+='4️⃣ Click "Submit Request" below ⬇️';
+  h+='</div></div>';
+  h+='<div class="fg"><label>Your WhatsApp Number</label><input class="fi" id="m-phone" value="'+(CU.phone||"")+'"></div>';
+  h+='<div class="fg"><label>Transaction Reference (optional)</label><input class="fi" id="m-txn" placeholder="Vodafone Cash transaction number"></div>';
+  document.getElementById("mbody").innerHTML=h;
+  document.getElementById("mfoot").innerHTML='<button class="btn btn-se" onclick="closeM()">Cancel</button><button class="btn btn-or btn-lg" onclick="sendReq('+sessionId+','+courseId+')">📤 Submit Request</button>';
+  document.getElementById("mov").classList.add("show");
+}
+function sendReq(sessionId,courseId){
+  var s=SESSIONS.find(function(x){return x.id===sessionId;});
+  var c=COURSES.find(function(x){return x.id===courseId;});
+  if(!s||!c)return;
+  var phone=document.getElementById("m-phone")?document.getElementById("m-phone").value.trim():CU.phone;
+  S.pendingSessions[sessionId]=true;
+  var now=new Date();
+  var ds=now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate()+" "+now.getHours()+":"+String(now.getMinutes()).padStart(2,"0");
+  REQUESTS.push({id:REQUESTS.length+1,userId:CU.id,sessionId:sessionId,courseId:courseId,userName:CU.name,phone:phone,sessionName:s.title,grade:gradeName(c.gradeId),amount:String(s.price),date:ds,status:"pending"});
+  NOTIFS.unshift({ic:"💰",title:"New Session Request",sub:CU.name+" → "+s.title+" ("+s.price+" EGP)",time:"Now",read:false});
+  updateDot();closeM();toast("✅ Request sent! Waiting for approval","success");renderSidebar();renderPage();
+}
+
+// ================================================================
+// EXAM TAKING
+// ================================================================
+function startExam(examId){
+  S.activeExamId=examId;S.examAnswers={};S.page="take-exam";renderPage();
+}
+function renderTakeExam(){
+  var exam=EXAMS.find(function(e){return e.id===S.activeExamId;});
+  if(!exam)return '<div class="es"><div class="es-ic">❌</div><h3>Exam not found</h3></div>';
+  var totalPts=exam.questions.reduce(function(a,q){return a+q.pts;},0);
+  var h='<div class="bk" onclick="S.page=\'myexams\';S.activeExamId=null;renderPage()">← Back</div>';
+  h+='<div style="background:var(--grad);border-radius:var(--r2);padding:1.25rem;color:#fff;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem">';
+  h+='<div><div style="font-size:17px;font-weight:800">'+exam.title+'</div><div style="font-size:12.5px;opacity:.85">'+exam.questions.length+' questions • '+totalPts+' pts</div></div>';
+  h+='<span class="pill" style="background:rgba(255,255,255,.2);color:#fff">⏳ In Progress</span></div>';
+  exam.questions.forEach(function(q,i){
+    h+='<div class="exam-q" id="q-'+q.id+'">';
+    h+='<div class="exam-q-num">Q'+(i+1)+' / '+exam.questions.length+' — '+(q.type==="mcq"?"MCQ":"Essay")+" • "+q.pts+' pts</div>';
+    h+='<div class="exam-q-text">'+q.text+'</div>';
+    if(q.type==="mcq"){
+      q.options.forEach(function(opt,oi){
+        var sel=S.examAnswers[q.id]===oi;
+        h+='<div class="mcq-opt'+(sel?" selected":"")+'" onclick="selectMCQ('+q.id+','+oi+')">';
+        h+='<div class="mcq-circle">'+(sel?"✓":"")+'</div><span>'+opt+'</span></div>';
+      });
+    } else {
+      h+='<textarea class="essay-ta" placeholder="Write your answer here..." oninput="S.examAnswers['+q.id+']=this.value">'+(S.examAnswers[q.id]||"")+'</textarea>';
+    }
+    h+='</div>';
+  });
+  h+='<div style="display:flex;justify-content:flex-end;margin-top:1rem"><button class="btn btn-gn btn-lg" onclick="submitExam()">✅ Submit Exam</button></div>';
+  return h;
+}
+function selectMCQ(qId,oi){S.examAnswers[qId]=oi;renderPage();}
+function submitExam(){
+  var exam=EXAMS.find(function(e){return e.id===S.activeExamId;});if(!exam)return;
+  var unanswered=exam.questions.filter(function(q){return S.examAnswers[q.id]===undefined;}).length;
+  if(unanswered>0&&!confirm(unanswered+" unanswered. Submit anyway?"))return;
+  var mcqScore=0;var essayGrades={};
+  exam.questions.forEach(function(q){
+    if(q.type==="mcq"){if(S.examAnswers[q.id]===q.correct)mcqScore+=q.pts;}
+    else{essayGrades[q.id]=null;}
+  });
+  EXAM_SUBMISSIONS.push({id:EXAM_SUBMISSIONS.length+1,examId:exam.id,userId:CU.id,userName:CU.name,answers:Object.assign({},S.examAnswers),mcqScore:mcqScore,essayGrades:essayGrades,submittedAt:new Date().toLocaleString()});
+  NOTIFS.unshift({ic:"📝",title:"Exam Submitted",sub:CU.name+" submitted: "+exam.title,time:"Now",read:false});
+  updateDot();toast("✅ Exam submitted!","success");viewExamResult(exam.id);
+}
+function viewExamResult(examId){
+  var exam=EXAMS.find(function(e){return e.id===examId;});
+  var sub=EXAM_SUBMISSIONS.find(function(s){return s.examId===examId&&s.userId===CU.id;});
+  if(!exam||!sub){toast("Result not available","warn");return;}
+  var totalPts=exam.questions.reduce(function(a,q){return a+q.pts;},0);
+  var mcqPts=exam.questions.filter(function(q){return q.type==="mcq";}).reduce(function(a,q){return a+q.pts;},0);
+  var essayPts=exam.questions.filter(function(q){return q.type==="essay";}).reduce(function(a,q){return a+q.pts;},0);
+  var eg=sub.essayGrades?Object.values(sub.essayGrades).reduce(function(a,v){return a+(v||0);},0):0;
+  var ed=essayPts===0||(sub.essayGrades&&!Object.values(sub.essayGrades).some(function(v){return v===null;}));
+  var total=ed?sub.mcqScore+eg:null;
+  var pct=total!==null?Math.round(total/totalPts*100):Math.round(sub.mcqScore/Math.max(mcqPts,1)*100);
+  document.getElementById("mtitle").textContent="Exam Results";
+  document.getElementById("mbox").className="mbox mbox-lg";
+  var h='<div class="exam-score">';
+  h+='<div class="exam-score-num">'+(total!==null?total:sub.mcqScore)+(total===null?'+?':'')+'</div>';
+  h+='<div class="exam-score-lbl">out of '+totalPts+' points</div>';
+  h+='<div class="score-bar"><div class="score-fill" style="width:'+pct+'%"></div></div>';
+  h+='<div style="display:flex;justify-content:center;gap:1.5rem;font-size:12.5px;opacity:.85"><span>MCQ: '+sub.mcqScore+'/'+mcqPts+'</span>';
+  if(essayPts>0)h+='<span>Essay: '+(ed?eg:' Awaiting')+'/'+essayPts+'</span>';
+  h+='</div></div>';
+  exam.questions.forEach(function(q,i){
+    var ans=sub.answers[q.id];
+    h+='<div class="exam-q"><div class="exam-q-num">Q'+(i+1)+' — '+(q.type==="mcq"?"MCQ":"Essay")+' • '+q.pts+' pts</div>';
+    h+='<div class="exam-q-text">'+q.text+'</div>';
+    if(q.type==="mcq"){
+      q.options.forEach(function(opt,oi){
+        var isCorr=oi===q.correct,wasSel=ans===oi;
+        var cls="mcq-opt"+(isCorr?" correct":wasSel?" wrong":"");
+        h+='<div class="'+cls+'"><div class="mcq-circle">'+(isCorr?"✓":wasSel?"✗":"")+'</div><span>'+opt+'</span>'+(isCorr?' <span style="margin-left:auto;font-size:11px;font-weight:700;color:var(--ac)">Correct ✅</span>':'')+'</div>';
+      });
+    } else {
+      var eg2=sub.essayGrades&&sub.essayGrades[q.id]!==undefined?sub.essayGrades[q.id]:null;
+      h+='<div style="font-size:11.5px;font-weight:700;color:var(--tx2);margin-bottom:.35rem">Your Answer:</div>';
+      h+='<textarea class="essay-ta" readonly>'+(sub.answers[q.id]||"(no answer)")+'</textarea>';
+      h+='<div style="font-size:12px;font-weight:700;color:'+(eg2!==null?"var(--ac)":"var(--or)")+';margin-top:.5rem">'+(eg2!==null?"Score: "+eg2+"/"+q.pts:"⏳ Awaiting teacher grading")+'</div>';
+    }
+    h+='</div>';
+  });
+  document.getElementById("mbody").innerHTML=h;
+  document.getElementById("mfoot").innerHTML='<button class="btn btn-pr" onclick="closeM()">Close</button>';
+  document.getElementById("mov").classList.add("show");
+}
+
+// ================================================================
+// MODAL
+// ================================================================
+function closeM(){document.getElementById("mov").classList.remove("show");}
+function closeMov(e){if(e.target===document.getElementById("mov"))closeM();}
+
+// ================================================================
+// INIT
+// ================================================================
+applyConfig();
+switchTab("login");
+</script>
+</body>
+</html>
